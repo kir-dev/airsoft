@@ -1,0 +1,88 @@
+/**
+ * @author Triszt4n
+ * Additional classes for the project
+ */
+
+a .clickable, .clickable {
+  text-decoration: none;
+  cursor: pointer;
+  color: $body-color;
+}
+
+a .clickable :hover, .clickable :hover {
+  color: $body-color;
+
+  h5 {
+    color: $link-color;
+    transition: all 150ms;
+  }
+  .timestamp {
+    color: $link-color;
+    transition: all 150ms;
+  }
+}
+
+.thumbnail {
+  height: 12rem;
+  object-fit: cover;
+  max-width: 12rem;
+}
+
+.thumbnail-mid {
+  height: 9rem;
+  object-fit: cover;
+  max-width: 9rem;
+}
+
+.thumbnail-mini {
+  height: 3rem;
+  object-fit: cover;
+  max-width: 3rem;
+}
+
+@media (max-width: 768px) {
+  .thumbnail {
+    height: 8rem;
+    max-width: 8rem;
+  }
+
+  .thumbnail-mid {
+    height: 6rem;
+    max-width: 6rem;
+  }
+}
+
+.custom-toast {
+  position: absolute;
+  top: 1rem;
+  z-index: -1;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+/*!
+ * Start Bootstrap - Clean Blog v5.0.10 (https://startbootstrap.com/theme/clean-blog)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-clean-blog/blob/master/LICENSE)
+ */
+
+header.masthead {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #868e96;
+  background-attachment: scroll;
+  position: relative;
+  background-size: cover;
+}
+
+header.masthead .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+}

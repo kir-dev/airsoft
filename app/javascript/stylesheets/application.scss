@@ -1,0 +1,15 @@
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "variables";
+@import "bootstrap";
+@import "bootswatch";
+@import "global";
+
+/*
+html body {
+  background-color: $body-bg;
+}
+
+.container {
+  background-color: $body-bg;
+}
+*/
