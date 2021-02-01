@@ -40,4 +40,12 @@ ActiveRecord::Schema.define(version: 2021_02_01_184945) do
   end
 
   add_foreign_key "events", "posts"
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "authsch_id"
+    t.boolean "admin"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
 end
