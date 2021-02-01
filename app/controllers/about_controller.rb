@@ -3,4 +3,9 @@ class AboutController < ApplicationController
   def index
     render :index
   end
+
+  # Temporary call
+  def home
+    render :home
+  end
 end
