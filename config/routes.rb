@@ -15,5 +15,9 @@ Rails.application.routes.draw do
   root "users#index"
 
   get '/about', to: 'about#index'
+
+  # Temporary configurations
   root to: 'about#home'
+  get '/gallery', to: 'about#gallery'
+  get '/calendar', to: 'about#calendar'
 end

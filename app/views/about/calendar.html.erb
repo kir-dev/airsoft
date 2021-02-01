@@ -1,0 +1,27 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
+<% content_for :javascripts do %>
+  <%= javascript_pack_tag 'calendar', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
+<%# Header %>
+<% content_for :header do %>
+  <header class="mb-4 mt-3">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 text-center">
+          <h1 class="fs-1">Naptár</h1>
+          <p class="fs-4">Játékaink ütemezése</p>
+        </div>
+      </div>
+    </div>
+  </header>
+<% end %>
+
+<%# Content %>
+<div class="bg-light p-2 p-md-3 py-4 rounded">
+  <div id='calendar'></div>
+</div>

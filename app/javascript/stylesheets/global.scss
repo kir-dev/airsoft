@@ -9,10 +9,10 @@ a .clickable, .clickable {
   color: $body-color;
 }
 
-a .clickable :hover, .clickable :hover {
+a .clickable:hover, .clickable:hover {
   color: $body-color;
 
-  h5 {
+  .title {
     color: $link-color;
     transition: all 150ms;
   }
@@ -23,30 +23,13 @@ a .clickable :hover, .clickable :hover {
 }
 
 .thumbnail {
-  height: 12rem;
+  height: 10rem;
   object-fit: cover;
-  max-width: 12rem;
-}
-
-.thumbnail-mid {
-  height: 9rem;
-  object-fit: cover;
-  max-width: 9rem;
-}
-
-.thumbnail-mini {
-  height: 3rem;
-  object-fit: cover;
-  max-width: 3rem;
+  max-width: 10rem;
 }
 
 @media (max-width: 768px) {
   .thumbnail {
-    height: 8rem;
-    max-width: 8rem;
-  }
-
-  .thumbnail-mid {
     height: 6rem;
     max-width: 6rem;
   }
@@ -96,4 +79,27 @@ header.overlay {
   header.overlay {
     padding: 11rem 0 7rem 0;
   }
+}
+
+.album-card-thumbnail {
+  background: no-repeat center center;
+  background-attachment: scroll;
+  position: relative;
+  background-size: cover;
+  filter: brightness(90%);
+}
+
+.album-card:hover {
+  .album-card-thumbnail {
+    filter: brightness(100%);
+    transition: all 200ms;
+  }
+}
+
+.album-card-date {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: .25rem;
+  text-align: center;
 }
