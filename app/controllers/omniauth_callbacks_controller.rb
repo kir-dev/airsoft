@@ -5,10 +5,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # devise :omniauthable, omniauth_providers: [:twitter]
 
   # You should also create an action method in this controller like this:
-  def github
-    @user = User.from_omniauth(request.env["omniauth.auth"])
-    sign_in_and_redirect @user
-  end
 
   def authsch
     @user = User.from_omniauth(request.env["omniauth.auth"])
