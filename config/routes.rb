@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :participations
   resources :rents
   resources :items
   devise_for :users, controllers: {
