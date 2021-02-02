@@ -5,7 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:authsch]
   has_many :rents
   has_many :items, through: :rents
+  has_many :participations
+  has_many :events, through: :participations
   alias rentals items
+  alias participated_events events
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
