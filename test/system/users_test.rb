@@ -15,7 +15,6 @@ class UsersTest < ApplicationSystemTestCase
     click_on "New User"
 
     check "Admin" if @user.admin
-    fill_in "Authsch", with: @user.authsch_id
     fill_in "Email", with: @user.email
     fill_in "Name", with: @user.name
     fill_in "Password", with: @user.password
@@ -30,7 +29,6 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     check "Admin" if @user.admin
-    fill_in "Authsch", with: @user.authsch_id
     fill_in "Email", with: @user.email
     fill_in "Name", with: @user.name
     fill_in "Password", with: @user.password
