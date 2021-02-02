@@ -15,6 +15,23 @@ ActiveRecord::Schema.define(version: 2021_02_01_184945) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rents", force: :cascade do |t|
+    t.datetime "end_date"
+    t.bigint "item_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_rents_on_item_id"
+    t.index ["user_id"], name: "index_rents_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.boolean "admin"
@@ -56,4 +73,6 @@ ActiveRecord::Schema.define(version: 2021_02_01_184945) do
   end
 
   add_foreign_key "events", "posts"
+  add_foreign_key "rents", "items"
+  add_foreign_key "rents", "users"
 end
