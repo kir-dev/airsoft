@@ -56,10 +56,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /calendar
-  def calendar
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

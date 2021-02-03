@@ -16,6 +16,5 @@ Rails.application.routes.draw do
   # Temporary configurations
   root to: 'posts#index'
   # get '/gallery', to: 'albums#gallery' ???
-  get '/calendar', to: 'events#calendar', as: 'calendar'
   get '/about', to: 'posts#about', as: 'about'
 end

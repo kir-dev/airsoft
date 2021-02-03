@@ -1,31 +1,27 @@
-<p id="notice"><%= notice %></p>
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js', 'data-turbolinks-track': 'reload' %>
+<% end %>
 
-<h1>Events</h1>
+<% content_for :javascripts do %>
+  <%= javascript_pack_tag 'calendar', 'data-turbolinks-track': 'reload' %>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Post</th>
-      <th>Date</th>
-      <th>Event type</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%# Header %>
+<% content_for :header do %>
+  <header class="mb-4 mt-3">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 text-center">
+          <h1 class="fs-1">Naptár</h1>
+          <p class="fs-4">Eseményeink ütemezése</p>
+        </div>
+      </div>
+    </div>
+  </header>
+<% end %>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.post_id %></td>
-        <td><%= event.date %></td>
-        <td><%= event.event_type_id %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Event', new_event_path %>
+<%# Content %>
+<div class="bg-light p-2 p-md-3 py-4 rounded">
+  <div id='calendar'></div>
+</div>
