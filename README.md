@@ -1,7 +1,31 @@
 
+
 # README
 
 ## Local setup
+
+## Create database user
+
+To log in to postgres user:
+
+```bash
+sudo su postgres
+```
+
+Type your `sudo password`.
+
+To create a database user for the project:
+```bash
+createuser -P -s airsoft
+```
+Type `CHANGE-ME`.
+
+Change back to your normal user:
+
+```bash
+exit
+```
+### Set up the application
 
 To setup the database:
 ```bash
@@ -30,13 +54,25 @@ Create the persistent database volume:
 docker volume create --name=airsoft_database`
 ```
 
-### Development
 Run only database container:
 ```bash
  docker-compose  up --build
 ```
 Use the `-d` switch to run it detached in the background.
 
-The database is accessible on port `5433`.
+The database is accessible on port `5433`, so you must update the port in `config/database.yml`.
 
 After creating the database container you have to set up the database from the console.
+
+### AuthSCH setup
+Copy .env.example to .env:
+
+```bash
+mv .env.example .env
+```
+
+Create an Outh Client at https://auth.sch.bme.hu with the follwing callback url:
+```bash
+http://localhost:3000/users/auth/authsch/callback
+```
+Complete '.env' with the `client id` and `client secret`, and restart the server.
