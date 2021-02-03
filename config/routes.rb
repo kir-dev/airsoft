@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :albums
   resources :participations
   resources :rents
   resources :items
