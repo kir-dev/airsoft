@@ -1,9 +1,31 @@
-<p id="notice"><%= notice %></p>
+<%# Header %>
+<% content_for :header do %>
+  <header class="mb-4 mt-3">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 text-center">
+          <h1 class="fs-1">Galéria</h1>
+          <p class="fs-4"><%= @album.post.title %></p>
+        </div>
+      </div>
+    </div>
+  </header>
+<% end %>
 
-<p>
-  <strong>Post:</strong>
-  <%= @album.post_id %>
-</p>
-
-<%= link_to 'Edit', edit_album_path(@album) %> |
-<%= link_to 'Back', albums_path %>
+<%# Content %>
+<div class="album">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <% @album.images.each do |image| %>
+      <div class="col">
+        <%= link_to image, class: "card shadow-sm album-card clickable" do  %>
+          <%= image_tag  image %>
+          <div class="card-body">
+            <div class="card-title title">
+              <span class="fs-4"><%= @album.post.title %></span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
