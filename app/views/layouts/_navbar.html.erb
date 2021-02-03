@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md bg-secondary navbar-dark" id="mainNav">
   <div class="container">
-    <%= link_to "/", class: "navbar-brand" do %>
+    <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag image_path('favicon.svg'), size: "32", class: "d-inline-block mr-2" %>
       AirsoftSCH
     <% end %>
@@ -10,36 +10,36 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <%= link_to 'Hírek', "/", class: current_controller?('events')? 'nav-link active' : 'nav-link' %>
+          <%= link_to 'Hírek', root_path, class: current_controller?('events')? 'nav-link active' : 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Naptár', "/calendar", class: current_controller?('users')? 'nav-link active' : 'nav-link' %>
+          <%= link_to 'Naptár', calendar_path, class: current_controller?('users')? 'nav-link active' : 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Felszereléseink', "/equipment", class: current_controller?('users')? 'nav-link active' : 'nav-link' %>
+          <%= link_to 'Felszereléseink', items_path, class: current_controller?('users')? 'nav-link active' : 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Galéria', "/gallery", class: current_controller?('users')? 'nav-link active' : 'nav-link' %>
+          <%= link_to 'Galéria', "/404.html", class: current_controller?('users')? 'nav-link active' : 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Rólunk', "/about", class: current_controller?('users')? 'nav-link active' : 'nav-link' %>
+          <%= link_to 'Rólunk', about_path, class: current_controller?('users')? 'nav-link active' : 'nav-link' %>
         </li>
       </ul>
       <ul class="navbar-nav me-right">
-        <% if true %>
+        <% if user_signed_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Gipsz Jakab
+              <%= current_user.name %>
             </a>
             <ul aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end">
               <li>
-                <%= link_to 'Kijelentkezés', "logout_path", class: 'dropdown-item' %>
+                <%= link_to "Kijelentkezés", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
               </li>
             </ul>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to 'AuthSCH belépés', "auth_path", class: current_controller?('sessions')? 'nav-link active' : 'nav-link', id: 'login' %>
+            <%= link_to 'Bejelentkezés', new_user_session_path, class: 'nav-link' %>
           </li>
         <% end %>
       </ul>

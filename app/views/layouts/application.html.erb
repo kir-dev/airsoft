@@ -15,13 +15,15 @@
   </head>
 
   <body>
-   <p class="notice"><%= notice %></p>
-   <p class="alert"><%= alert %></p>
-    <% if user_signed_in? %>
-    <p><%= current_user.name %></p><p><%= link_to "Kijelentkezés", destroy_user_session_path, method: :delete %> </p>
-    <% else%>
-      <%= link_to "Bejelnetkezés", new_user_session_path %>
-    <%end %>
-    <%= yield %>
+    <div class="wrapper d-flex flex-column min-vh-100">
+      <%= render 'layouts/navbar' %>
+      <%= yield :header %>
+      <div class="container flex-grow-1">
+        <%= render 'layouts/notification' %>
+        <%= yield %>
+      </div>
+      <%= render 'layouts/footer' %>
+    </div>
+    <%= yield :javascripts %>
   </body>
 </html>

@@ -12,12 +12,10 @@ Rails.application.routes.draw do
   resources :events
   resources :posts
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root "users#index"
-
-  get '/about', to: 'about#index'
 
   # Temporary configurations
-  root to: 'about#home'
-  get '/gallery', to: 'about#gallery'
-  get '/calendar', to: 'about#calendar'
+  root to: 'posts#index'
+  # get '/gallery', to: 'albums#gallery' ???
+  get '/calendar', to: 'events#calendar', as: 'calendar'
+  get '/about', to: 'posts#about', as: 'about'
 end
