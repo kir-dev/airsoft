@@ -26,6 +26,11 @@
     <%= form.number_field :static_id %>
   </div>
 
+   <div class="field">
+    <%= form.label :formatted_document %>
+    <%= form.rich_text_area :formatted_document %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
