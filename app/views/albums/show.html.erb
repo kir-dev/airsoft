@@ -18,12 +18,7 @@
     <% @album.images.each do |image| %>
       <div class="col">
         <%= link_to image, class: "card shadow-sm album-card clickable" do  %>
-          <%= image_tag  image %>
-          <div class="card-body">
-            <div class="card-title title">
-              <span class="fs-4"><%= @album.post.title %></span>
-            </div>
-          </div>
+          <%= image_tag image, class: "bd-placeholder-img card-img-top album-card-thumbnail" %>
         <% end %>
       </div>
     <% end %>
