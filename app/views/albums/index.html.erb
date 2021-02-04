@@ -1,5 +1,3 @@
-<%= link_to 'New Album', new_album_path %>
-
 <%# Header %>
 <% content_for :header do %>
   <header class="mb-4 mt-3">
@@ -14,13 +12,20 @@
   </header>
 <% end %>
 
+<%# Button for admins %>
+<div class="row mb-2">
+  <div class="col-12">
+    <%= link_to 'Új album', new_album_path, class: "btn btn-primary float-end" %>
+  </div>
+</div>
+
 <%# Content %>
   <div class="album">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <% @albums.each do |album| %>
         <div class="col">
           <%= link_to album, class: "card shadow-sm album-card clickable" do  %>
-            <%= image_tag  album.thumbnail %>
+            <%= image_tag album.thumbnail, class: "bd-placeholder-img card-img-top album-card-thumbnail" %>
 
             <div class="bg-light rounded album-card-date">
               2021.<br />03.11.
