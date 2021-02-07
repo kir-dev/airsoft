@@ -74,20 +74,15 @@ a .clickable:hover, .clickable:hover {
   }
 }
 
-header.overlay {
-  background: no-repeat center center;
-  background-color: $body-bg;
-  background-attachment: scroll;
-  position: relative;
-  background-size: cover;
-  margin-bottom: 50px;
-  padding: 4rem 0 3rem 0;
-  color: $white;
+.custom-carousel-pic {
+  height: 30vh;
+  filter: brightness(50%);
+  object-fit: cover;
 }
 
 @media (min-width: 768px) {
-  header.overlay {
-    padding: 11rem 0 7rem 0;
+  .custom-carousel-pic {
+    height: 50vh;
   }
 }
 

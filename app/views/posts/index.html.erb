@@ -5,16 +5,32 @@
 
 <%# Header with navbar overlay %>
 <% content_for :header do %>
-  <header class="overlay mb-4" style="<%= "background-image: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url('" + image_path('home-bg.jpg') + "')" %>">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-10 text-center">
-          <h1 class="fs-1">Hírek</h1>
-          <p class="fs-4">Játékainkról és körünkről</p>
-        </div>
+  <div id="carouselExampleIndicators" class="carousel slide mb-4" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="5000">
+        <%= image_tag image_path('home-bg.jpg'), class: "d-block w-100 custom-carousel-pic" %>
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <%= image_tag image_path('home-bg.jpg'), class: "d-block w-100 custom-carousel-pic" %>
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <%= image_tag image_path('home-bg.jpg'), class: "d-block w-100 custom-carousel-pic" %>
       </div>
     </div>
-  </header>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </a>
+  </div>
 <% end %>
 
 <%# Button for admins %>
