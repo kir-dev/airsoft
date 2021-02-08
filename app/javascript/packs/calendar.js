@@ -1,7 +1,7 @@
 import '../../../app/javascript/stylesheets/_variables.scss'
 
 const commonCalendarOptions = {
-  plugins: ['interaction', 'timeGrid', 'dayGrid'],
+  //plugins: ['interaction', 'timeGrid', 'dayGrid'],
   views: {
     timeGridOneDay: {
       type: 'timeGrid',

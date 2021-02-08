@@ -28,10 +28,22 @@
       <ul class="navbar-nav me-right">
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
+          
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <%= current_user.name %>
             </a>
-            <ul aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end">
+
+            
+              <ul aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end">
+            <% if current_user.admin? %>
+                <li>
+                  <%= link_to "Admin profile", class: 'dropdown-item' %>
+                </li>
+                <% end %>
+              <li>
+                <%= link_to "Profile", class: 'dropdown-item' %>
+              </li>
+              <hr>
               <li>
                 <%= link_to "Kijelentkezés", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
               </li>
