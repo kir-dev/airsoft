@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :rented_items
+  resources :admins
   resources :participations
   resources :rents
   resources :items
@@ -11,6 +13,9 @@ Rails.application.routes.draw do
   resources :event_types
   resources :events
   resources :posts
+  resources :profiles
+  resources :admins
+  resources :rented_items
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # Temporary configurations

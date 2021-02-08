@@ -1,0 +1,2 @@
+class RentedItem < ApplicationRecord
+end

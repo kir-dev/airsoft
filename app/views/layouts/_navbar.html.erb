@@ -37,14 +37,14 @@
               <ul aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end">
             <% if current_user.admin? %>
                 <li>
-                  <%= link_to "Admin profile", class: 'dropdown-item' %>
+                  <%= link_to "Admin profile", admins_path, class: 'dropdown-item' %>
                 </li>
                 <% end %>
               <li>
-                <%= link_to "Profile", class: 'dropdown-item' %>
+                <%= link_to "Profile", profiles_path, class: 'dropdown-item' %>
               </li>
               <li>
-                <%= link_to "Kölcsönzéseim", class: 'dropdown-item' %>
+                <%= link_to "Kölcsönzéseim", rented_items_path, class: 'dropdown-item' %>
               </li>
               <hr>
               <li>
