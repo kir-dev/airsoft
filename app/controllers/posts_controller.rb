@@ -30,10 +30,14 @@ class PostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /posts/1 
+  # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: "Post was successfully updated."
+      if @post.about?
+        redirect_to about_path, notice: "Post was successfully updated."
+      else
+        redirect_to @post, notice: "Post was successfully updated."
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -47,7 +51,12 @@ class PostsController < ApplicationController
 
   # GET /about
   def about
-    # @post = Post.find(???)
+    begin
+      @post = Post.find_by! static_id: :about
+    rescue ActiveRecord::RecordNotFound
+      @post = Post.create static_id: :about, title: 'Rólunk oldal tartalma', short_description: '[Nem szükséges kitölteni]'
+      redirect_to edit_post_url(@post)
+    end
   end
 
   private
@@ -58,6 +67,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :short_description, :static_id, :formatted_document)
+      params.require(:post).permit(:title, :short_description, :formatted_document)
     end
 end
