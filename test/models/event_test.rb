@@ -3,11 +3,19 @@
 # Table name: events
 #
 #  id            :bigint           not null, primary key
-#  post_id       :bigint           not null
 #  date          :datetime
-#  event_type_id :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  event_type_id :integer
+#  post_id       :bigint           not null
+#
+# Indexes
+#
+#  index_events_on_post_id  (post_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (post_id => posts.id)
 #
 require 'test_helper'
 
