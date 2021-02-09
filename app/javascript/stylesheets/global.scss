@@ -46,6 +46,10 @@ a .clickable:hover, .clickable:hover {
   text-align: center;
 }
 
+.navbar {
+  transition: background-color 500ms ease-in-out;
+}
+
 .transparent-nav {
   position: relative;
   font-weight: 300;
@@ -61,6 +65,12 @@ a .clickable:hover, .clickable:hover {
     z-index: 1030;
     background: transparent;
     background-color: transparent !important;
+  }
+
+  .scrolling-nav {
+    background: fixed !important;
+    background-color: $secondary !important;
+    transition: background-color 500ms ease-in-out;
   }
 }
 
