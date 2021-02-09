@@ -56,7 +56,7 @@ class PostsController < ApplicationController
     begin
       @post = Post.unscoped.find_by! static_id: :about
     rescue ActiveRecord::RecordNotFound
-      @post = Post.unscoped.create! static_id: :about, title: 'Rólunk oldal tartalma', short_description: '[Nem szükséges kitölteni]'
+      @post = Post.create! static_id: :about, title: 'Rólunk oldal tartalma', short_description: '[Nem szükséges kitölteni]'
       redirect_to edit_post_url(@post)
     end
   end
