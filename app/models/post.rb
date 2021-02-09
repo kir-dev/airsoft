@@ -13,5 +13,7 @@ class Post < ApplicationRecord
   has_one :event
   has_one :album
   has_rich_text :formatted_document
-  enum static_id: [:about]
+  enum static_id: [:common, :about]
+
+  default_scope { where(static_id: :common) }
 end

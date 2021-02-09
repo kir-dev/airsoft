@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  # Please note, we're using default_scope with this model's static_id
+  # Info: https://guides.rubyonrails.org/active_record_querying.html#applying-a-default-scope
 
   # GET /posts
   def index
-    @posts = Post.where.not(static_id: :about)
+    @posts = Post.all
   end
 
   # GET /posts/1
@@ -52,9 +54,9 @@ class PostsController < ApplicationController
   # GET /about
   def about
     begin
-      @post = Post.find_by! static_id: :about
+      @post = Post.unscoped.find_by! static_id: :about
     rescue ActiveRecord::RecordNotFound
-      @post = Post.create static_id: :about, title: 'Rólunk oldal tartalma', short_description: '[Nem szükséges kitölteni]'
+      @post = Post.unscoped.create! static_id: :about, title: 'Rólunk oldal tartalma', short_description: '[Nem szükséges kitölteni]'
       redirect_to edit_post_url(@post)
     end
   end
@@ -62,7 +64,7 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.unscoped.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
