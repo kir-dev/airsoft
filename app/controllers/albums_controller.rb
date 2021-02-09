@@ -1,12 +1,12 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: %i[ show edit update destroy delete_image ]
 
-  # GET /albums or /albums.json
+  # GET /albums
   def index
     @albums = Album.all
   end
 
-  # GET /albums/1 or /albums/1.json
+  # GET /albums/1
   def show
   end
 
@@ -19,41 +19,36 @@ class AlbumsController < ApplicationController
   def edit
   end
 
-  # POST /albums or /albums.json
+  # POST /albums
   def create
     @album = Album.new(album_params)
 
-    respond_to do |format|
-      if @album.save
-        format.html { redirect_to @album, notice: "Album was successfully created." }
-        format.json { render :show, status: :created, location: @album }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
-      end
+    if @album.save
+      redirect_to @album, notice: "Album was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /albums/1 or /albums/1.json
+  # PATCH/PUT /albums/1
   def update
-    respond_to do |format|
-      if @album.update(album_params)
-        format.html { redirect_to @album, notice: "Album was successfully updated." }
-        format.json { render :show, status: :ok, location: @album }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
+    if @album.update(album_params_no_images)
+      if params[:album][:images].present?
+        params[:album][:images].each do |image|
+          @album.images.attach(image)
+        end
       end
+
+      redirect_to @album, notice: "Album was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /albums/1 or /albums/1.json
+  # DELETE /albums/1
   def destroy
     @album.destroy
-    respond_to do |format|
-      format.html { redirect_to albums_url, notice: "Album was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to albums_url, notice: "Album was successfully destroyed."
   end
 
   # DELETE one image of the album
@@ -72,5 +67,9 @@ class AlbumsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def album_params
       params.require(:album).permit(:post_id, images: [])
+    end
+
+    def album_params_no_images
+      params.require(:album).permit(:post_id)
     end
 end
