@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: %i[ show edit update destroy ]
+  before_action :set_album, only: %i[ show edit update destroy delete_image ]
 
   # GET /albums or /albums.json
   def index
@@ -54,6 +54,13 @@ class AlbumsController < ApplicationController
       format.html { redirect_to albums_url, notice: "Album was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  # DELETE one image of the album
+  def delete_image
+    @image = ActiveStorage::Attachment.find(params[:image_id])
+    @image.purge
+    redirect_to @album
   end
 
   private
