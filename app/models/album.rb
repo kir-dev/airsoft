@@ -6,7 +6,7 @@ class Album < ApplicationRecord
 
   def thumbnail
     if images.empty?
-      "http://ipsumimage.appspot.com/300x200?l=No%20uploads%20yet"
+      ActionController::Base.helpers.image_url('blank-album.png')
     else 
       images.first.variant gravity: "Center", resize: "300x200^", crop: "300x200+0+0" 
     end
