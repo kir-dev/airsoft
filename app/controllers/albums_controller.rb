@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: %i[ show edit update destroy delete_image ]
+  before_action :set_album, only: %i[ show edit update destroy delete_image add_image ]
 
   # GET /albums
   def index
@@ -22,6 +22,7 @@ class AlbumsController < ApplicationController
   # POST /albums
   def create
     @album = Album.new(album_params)
+    @album.images = params[:album][:images]
 
     if @album.save
       redirect_to @album, notice: "Album was successfully created."
@@ -32,7 +33,7 @@ class AlbumsController < ApplicationController
 
   # PATCH/PUT /albums/1
   def update
-    if @album.update(album_params_no_images)
+    if @album.update(album_params)
       if params[:album][:images].present?
         params[:album][:images].each do |image|
           @album.images.attach(image)
@@ -58,6 +59,14 @@ class AlbumsController < ApplicationController
     redirect_to @album
   end
 
+  # POST add image(s) to the album
+  def add_image
+    images = params[:images]
+    @album.images.attach(images) if images.present?
+    
+    redirect_to @album, notice: "Album was successfully updated."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_album
@@ -66,10 +75,6 @@ class AlbumsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def album_params
-      params.require(:album).permit(:post_id, images: [])
-    end
-
-    def album_params_no_images
       params.require(:album).permit(:post_id)
     end
 end
