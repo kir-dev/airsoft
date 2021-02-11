@@ -1,5 +1,7 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: %i[ show edit update destroy delete_image add_image ]
+  attr_accessor :render_target
+  rescue_from PG::UniqueViolation, :with => :rescue_nonunique
 
   # GET /albums
   def index
@@ -21,6 +23,8 @@ class AlbumsController < ApplicationController
 
   # POST /albums
   def create
+    @render_target = :new
+
     @album = Album.new(album_params)
     @album.images = params[:album][:images]
 
@@ -33,6 +37,8 @@ class AlbumsController < ApplicationController
 
   # PATCH/PUT /albums/1
   def update
+    @render_target = :edit
+
     if @album.update(album_params)
       if params[:album][:images].present?
         params[:album][:images].each do |image|
@@ -76,5 +82,11 @@ class AlbumsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def album_params
       params.require(:album).permit(:post_id)
+    end
+
+    # Rescue and render again with error message
+    def rescue_nonunique
+      @album.errors.add :post, :already_in_use, message: " already in use"
+      render @render_target, status: :unprocessable_entity
     end
 end
