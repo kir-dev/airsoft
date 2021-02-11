@@ -1,12 +1,12 @@
 class ParticipationsController < ApplicationController
   before_action :set_participation, only: %i[ show edit update destroy ]
 
-  # GET /participations or /participations.json
+  # GET /participations
   def index
     @participations = Participation.all
   end
 
-  # GET /participations/1 or /participations/1.json
+  # GET /participations/1
   def show
   end
 
@@ -19,41 +19,30 @@ class ParticipationsController < ApplicationController
   def edit
   end
 
-  # POST /participations or /participations.json
+  # POST /participations
   def create
     @participation = Participation.new(participation_params)
 
-    respond_to do |format|
-      if @participation.save
-        format.html { redirect_to @participation, notice: "Participation was successfully created." }
-        format.json { render :show, status: :created, location: @participation }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @participation.errors, status: :unprocessable_entity }
-      end
+    if @participation.save
+      redirect_to @participation, notice: "Participation was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /participations/1 or /participations/1.json
+  # PATCH/PUT /participations/1
   def update
-    respond_to do |format|
-      if @participation.update(participation_params)
-        format.html { redirect_to @participation, notice: "Participation was successfully updated." }
-        format.json { render :show, status: :ok, location: @participation }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @participation.errors, status: :unprocessable_entity }
-      end
+    if @participation.update(participation_params)
+      redirect_to @participation, notice: "Participation was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /participations/1 or /participations/1.json
+  # DELETE /participations/1
   def destroy
     @participation.destroy
-    respond_to do |format|
-      format.html { redirect_to participations_url, notice: "Participation was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to participations_url, notice: "Participation was successfully destroyed."
   end
 
   private

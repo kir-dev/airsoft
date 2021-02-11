@@ -1,12 +1,12 @@
 class EventTypesController < ApplicationController
   before_action :set_event_type, only: %i[ show edit update destroy ]
 
-  # GET /event_types or /event_types.json
+  # GET /event_types
   def index
     @event_types = EventType.all
   end
 
-  # GET /event_types/1 or /event_types/1.json
+  # GET /event_types/1
   def show
   end
 
@@ -19,41 +19,30 @@ class EventTypesController < ApplicationController
   def edit
   end
 
-  # POST /event_types or /event_types.json
+  # POST /event_types
   def create
     @event_type = EventType.new(event_type_params)
 
-    respond_to do |format|
-      if @event_type.save
-        format.html { redirect_to @event_type, notice: "Event type was successfully created." }
-        format.json { render :show, status: :created, location: @event_type }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @event_type.errors, status: :unprocessable_entity }
-      end
+    if @event_type.save
+      redirect_to @event_type, notice: "Event type was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /event_types/1 or /event_types/1.json
+  # PATCH/PUT /event_types/1
   def update
-    respond_to do |format|
-      if @event_type.update(event_type_params)
-        format.html { redirect_to @event_type, notice: "Event type was successfully updated." }
-        format.json { render :show, status: :ok, location: @event_type }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @event_type.errors, status: :unprocessable_entity }
-      end
+    if @event_type.update(event_type_params)
+      redirect_to @event_type, notice: "Event type was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /event_types/1 or /event_types/1.json
+  # DELETE /event_types/1
   def destroy
     @event_type.destroy
-    respond_to do |format|
-      format.html { redirect_to event_types_url, notice: "Event type was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to event_types_url, notice: "Event type was successfully destroyed."
   end
 
   private

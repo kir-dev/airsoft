@@ -1,12 +1,12 @@
 class RentsController < ApplicationController
   before_action :set_rent, only: %i[ show edit update destroy ]
 
-  # GET /rents or /rents.json
+  # GET /rents
   def index
     @rents = Rent.all
   end
 
-  # GET /rents/1 or /rents/1.json
+  # GET /rents/1
   def show
   end
 
@@ -19,41 +19,30 @@ class RentsController < ApplicationController
   def edit
   end
 
-  # POST /rents or /rents.json
+  # POST /rents
   def create
     @rent = Rent.new(rent_params)
 
-    respond_to do |format|
-      if @rent.save
-        format.html { redirect_to @rent, notice: "Rent was successfully created." }
-        format.json { render :show, status: :created, location: @rent }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @rent.errors, status: :unprocessable_entity }
-      end
+    if @rent.save
+      redirect_to @rent, notice: "Rent was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /rents/1 or /rents/1.json
+  # PATCH/PUT /rents/1
   def update
-    respond_to do |format|
-      if @rent.update(rent_params)
-        format.html { redirect_to @rent, notice: "Rent was successfully updated." }
-        format.json { render :show, status: :ok, location: @rent }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @rent.errors, status: :unprocessable_entity }
-      end
+    if @rent.update(rent_params)
+      redirect_to @rent, notice: "Rent was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /rents/1 or /rents/1.json
+  # DELETE /rents/1
   def destroy
     @rent.destroy
-    respond_to do |format|
-      format.html { redirect_to rents_url, notice: "Rent was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to rents_url, notice: "Rent was successfully destroyed."
   end
 
   private
