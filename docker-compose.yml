@@ -6,11 +6,33 @@ services:
     environment:
       POSTGRES_USER: airsoft
       POSTGRES_PASSWORD: CHANGE-ME
-    ports:
-      - 5433:5432
     volumes:
       - database_folder:/var/lib/postgresql/data
+    networks:
+      - airsoft_network
+  web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    environment:
+      - RAILS_SERVE_STATIC_FILES=true
+      - RAILS_ENV=production
+      - DATABASE_PASSWORD=CHANGE-ME
+      - DATABASE_HOST=db
+    restart: always
+    ports:
+      - "3222:3000"
+    networks:
+      - airsoft_network
+    depends_on:
+      - db
+    volumes:
+      - image_folder:/airsoft/storage/
+networks:
+  airsoft_network:
 volumes:
   database_folder:
     external:
       name: airsoft_database
+  image_folder:
+    external:
+      name: airsoft_images
