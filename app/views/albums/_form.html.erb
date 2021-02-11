@@ -1,27 +1,29 @@
 <%= form_with(model: album, local: true) do |form| %>
-  <% if album.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(album.errors.count, "error") %> prohibited this album from being saved:</h2>
+  <%= render 'layouts/errors', errors: album.errors %>
 
-      <ul>
-        <% album.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <div class="mb-3">
+    <%= form.label :post_id, "Poszt elérése", class: "form-label" %>
+    <div class="input-group">
+      <span class="input-group-text"><%= posts_url %>/</span>
+      <%= form.number_field :post_id, class: "form-control" %>
+    </div>
+    <div id="post-help" class="form-text">Add meg, melyik poszthoz szeretnéd hozzáfűzni az albumot!</div>
+  </div>
+
+  <% if page_type == :new %>
+    <div class="mb-3">
+      <%= form.label :images, class: "form-label" %>
+      <%= form.file_field :images, multiple: true, accept: 'image/png, image/jpeg', class: "form-control" %>
+      <div id="images-help" class="form-text">Válaszd ki a hozzáadandó képeket!</div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :post_id %>
-    <%= form.number_field :post_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :images %>
-    <%= form.file_field :images, multiple:true, accept: 'image/png, image/jpeg'  %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="mt-4 mb-3 btn-toolbar justify-content-between">
+    <%= link_to back_path, class: "btn btn-primary" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+      </svg>
+    <% end %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

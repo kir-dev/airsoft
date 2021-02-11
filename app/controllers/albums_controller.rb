@@ -1,12 +1,14 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: %i[ show edit update destroy ]
+  before_action :set_album, only: %i[ show edit update destroy delete_image add_image ]
+  attr_accessor :render_target
+  rescue_from PG::UniqueViolation, :with => :rescue_nonunique
 
-  # GET /albums or /albums.json
+  # GET /albums
   def index
     @albums = Album.all
   end
 
-  # GET /albums/1 or /albums/1.json
+  # GET /albums/1
   def show
   end
 
@@ -19,41 +21,50 @@ class AlbumsController < ApplicationController
   def edit
   end
 
-  # POST /albums or /albums.json
+  # POST /albums
   def create
+    @render_target = :new
+
     @album = Album.new(album_params)
+    @album.images = params[:album][:images]
 
-    respond_to do |format|
-      if @album.save
-        format.html { redirect_to @album, notice: "Album was successfully created." }
-        format.json { render :show, status: :created, location: @album }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
-      end
+    if @album.save
+      redirect_to @album, notice: "Album was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /albums/1 or /albums/1.json
+  # PATCH/PUT /albums/1
   def update
-    respond_to do |format|
-      if @album.update(album_params)
-        format.html { redirect_to @album, notice: "Album was successfully updated." }
-        format.json { render :show, status: :ok, location: @album }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
-      end
+    @render_target = :edit
+
+    if @album.update(album_params)
+      redirect_to @album, notice: "Album was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /albums/1 or /albums/1.json
+  # DELETE /albums/1
   def destroy
     @album.destroy
-    respond_to do |format|
-      format.html { redirect_to albums_url, notice: "Album was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to albums_url, notice: "Album was successfully destroyed."
+  end
+
+  # DELETE one image of the album
+  def delete_image
+    @image = ActiveStorage::Attachment.find(params[:image_id])
+    @image.purge
+    redirect_to @album
+  end
+
+  # POST add image(s) to the album
+  def add_image
+    images = params[:images]
+    @album.images.attach(images) if images.present?
+    
+    redirect_to @album, notice: "Album was successfully updated."
   end
 
   private
@@ -64,6 +75,12 @@ class AlbumsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def album_params
-      params.require(:album).permit(:post_id, images: [])
+      params.require(:album).permit(:post_id)
+    end
+
+    # Rescue and render again with error message
+    def rescue_nonunique
+      @album.errors.add :post, :already_in_use, message: " already in use"
+      render @render_target, status: :unprocessable_entity
     end
 end

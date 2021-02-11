@@ -108,12 +108,18 @@ header.overlay {
 
 .album-card-date {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -0.25rem;
+  left: -0.25rem;
   padding: .25rem;
   text-align: center;
 }
 
 .navbar-brand {
   font-weight: 600;
+}
+
+.album-image-delete {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
 }

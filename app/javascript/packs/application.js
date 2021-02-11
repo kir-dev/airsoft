@@ -17,7 +17,6 @@ require("channels")
 
 import "bootstrap"
 import "../stylesheets/application"
-//import "./"
 
 require("trix")
 require("@rails/actiontext")

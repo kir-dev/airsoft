@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :albums
+  resources :albums do
+    member do
+      delete :delete_image
+      post :add_image
+    end
+  end
+  
   resources :participations
   resources :rents
   resources :items
