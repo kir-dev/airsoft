@@ -84,5 +84,6 @@ test:
 #
 production:
   <<: *default
+  host: <%= ENV['DATABASE_HOST'] %>
   database: airsoft_production
-  password: <%= ENV['AIRSOFT_DATABASE_PASSWORD'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
