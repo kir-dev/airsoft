@@ -40,12 +40,6 @@ class AlbumsController < ApplicationController
     @render_target = :edit
 
     if @album.update(album_params)
-      if params[:album][:images].present?
-        params[:album][:images].each do |image|
-          @album.images.attach(image)
-        end
-      end
-
       redirect_to @album, notice: "Album was successfully updated."
     else
       render :edit, status: :unprocessable_entity
