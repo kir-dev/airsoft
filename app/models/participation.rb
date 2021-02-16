@@ -2,11 +2,12 @@
 #
 # Table name: participations
 #
-#  id         :bigint           not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  event_id   :bigint           not null
-#  user_id    :bigint           not null
+#  id           :bigint           not null, primary key
+#  form_answers :json
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  event_id     :bigint           not null
+#  user_id      :bigint           not null
 #
 # Indexes
 #
@@ -21,4 +22,11 @@
 class Participation < ApplicationRecord
   belongs_to :user
   belongs_to :event
+
+  validates :form_answers, json: {schema: :validation_schema}
+
+  def validation_schema
+    event.event_type.blank? ? {} : event.event_type.json_form_validation_schema
+  end
+
 end

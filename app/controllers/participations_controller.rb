@@ -1,6 +1,7 @@
 class ParticipationsController < ApplicationController
   before_action :set_participation, only: %i[ show edit update destroy ]
   before_action :check_admin, except: %i[ show index ]
+  before_action :login_required, only: %i[ create, new ]
 
   # GET /participations
   def index
@@ -11,9 +12,15 @@ class ParticipationsController < ApplicationController
   def show
   end
 
-  # GET /participations/new
+  # GET /posts/:post_id/register
   def new
-    @participation = Participation.new
+    post = Post.find(params[:post_id])
+    if post.event.nil? || post.event.event_type.nil?
+      redirect_to root_url, notice: "Ehhez az eseményhez nincs jelentkeztető űrlap"
+    else
+      @JSON          = post.event.event_type.json_form_data
+      @participation = Participation.new(event: post.event)
+    end
   end
 
   # GET /participations/1/edit
@@ -23,11 +30,11 @@ class ParticipationsController < ApplicationController
   # POST /participations
   def create
     @participation = Participation.new(participation_params)
-
+    @participation.user = current_user
     if @participation.save
       redirect_to @participation, notice: "Participation was successfully created."
     else
-      render :new, status: :unprocessable_entity
+      redirect_to @participation.event.post, notice: 'Invalid data'
     end
   end
 
@@ -47,13 +54,18 @@ class ParticipationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_participation
-      @participation = Participation.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def participation_params
-      params.require(:participation).permit(:user_id, :event_id)
-    end
+  def login_required
+    redirect_to root_url, notice: "Login required" unless user_signed_in?
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_participation
+    @participation = Participation.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def participation_params
+    params.require(:participation).permit(:user_id, :event_id, form_answers: {})
+  end
 end

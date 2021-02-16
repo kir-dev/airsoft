@@ -33,6 +33,7 @@ class EventTypesController < ApplicationController
 
   # PATCH/PUT /event_types/1
   def update
+    puts event_type_params
     if @event_type.update(event_type_params)
       redirect_to @event_type, notice: "Event type was successfully updated."
     else

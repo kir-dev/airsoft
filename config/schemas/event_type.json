@@ -1,0 +1,102 @@
+{
+  "title": "airsoft.sch.bme.hu form model validation schema",
+  "description": "Validates form model, so that it can be handled by the dynamic form creation method",
+  "type": "object",
+  "additionalProperties": {
+    "oneOf": [
+      {"$ref": "#/definitions/text_field"},
+      {"$ref": "#/definitions/text_area"},
+      {"$ref": "#/definitions/check_box"},
+      {"$ref": "#/definitions/number"},
+      {"$ref": "#/definitions/radio_group"},
+      {"$ref": "#/definitions/select"}
+    ]
+  },
+  "definitions": {
+    "text_field":{
+      "type":"object",
+      "properties": {
+        "type": {
+          "enum": ["text", "phone", "email"]
+        },
+        "required":{"type":"boolean"},
+        "pattern":{"type":"string"},
+        "placeholder":{"type":"string"},
+        "maxlength":{"type":"integer"}
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "text_area":{
+      "type":"object",
+      "properties": {
+        "type": {
+          "enum": ["textarea"]
+        },
+        "required":{"type":"boolean"},
+        "size":{"type":"string"},
+        "cols":{"type":"integer"},
+        "row":{"type":"integer"}
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "check_box":{
+      "type":"object",
+      "properties": {
+        "type": {
+          "enum": ["checkbox"]
+        }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "number":{
+      "type":"object",
+      "properties": {
+        "type": {
+          "enum": ["number"]
+        },
+        "required":{"type":"boolean"},
+        "min":{"type":"integer"},
+        "max":{"type":"integer"},
+        "step":{"type":"integer"}
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "radio_group":{
+      "type":"object",
+      "properties": {
+        "type": {
+          "enum": ["radio_group"]
+        },
+        "items":{
+          "type": "array",
+          "items": {
+            "type":"string"
+          }
+        }
+      },
+      "required": ["type","items"],
+      "additionalProperties": false
+    },
+    "select":{
+      "type":"object",
+      "properties": {
+        "type": {
+          "enum": ["select"]
+        },
+        "items":{
+          "type": "array",
+          "items": {
+            "type":"string"
+          }
+        },
+        "multiple":{"type":"boolean"}
+      },
+      "required": ["type","items"],
+      "additionalProperties": false
+    }
+  }
+}

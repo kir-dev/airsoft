@@ -17,7 +17,6 @@
         <td><%= participation.user_id %></td>
         <td><%= participation.event_id %></td>
         <td><%= link_to 'Show', participation %></td>
-        <td><%= link_to 'Edit', edit_participation_path(participation) %></td>
         <td><%= link_to 'Destroy', participation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -26,4 +25,3 @@
 
 <br>
 
-<%= link_to 'New Participation', new_participation_path %>

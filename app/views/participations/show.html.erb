@@ -10,5 +10,9 @@
   <%= @participation.event_id %>
 </p>
 
-<%= link_to 'Edit', edit_participation_path(@participation) %> |
+<p>
+  <strong>JSON:</strong>
+  <%= @participation.form_answers %>
+</p>
+
 <%= link_to 'Back', participations_path %>

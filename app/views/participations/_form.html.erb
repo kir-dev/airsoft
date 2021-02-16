@@ -1,8 +1,7 @@
-<%= form_with(model: participation, local: true) do |form| %>
+<%= bootstrap_form_with model: participation, builder: JsonFormBuilder, bootstrap: { layout: :vertical } do |form| %>
   <% if participation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(participation.errors.count, "error") %> prohibited this participation from being saved:</h2>
-
       <ul>
         <% participation.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -11,17 +10,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
+  <%= form.hidden_field :event_id, value: @participation.event.id %>
+  <%= form.fields_for :form_answers do |ff| %>
+    <% @JSON.each do |name, schema| %>
+      <%= ff.json_field name, schema: schema %>
+    <% end %>
+  <% end %>
+  <%= form.primary "Nevezés" %>
 
-  <div class="field">
-    <%= form.label :event_id %>
-    <%= form.text_field :event_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
