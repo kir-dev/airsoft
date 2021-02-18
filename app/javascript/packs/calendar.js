@@ -1,5 +1,7 @@
 import '../../../app/javascript/stylesheets/_variables.scss'
 
+//TODO: fullcalendar 5 version
+
 const commonCalendarOptions = {
   //plugins: ['interaction', 'timeGrid', 'dayGrid'],
   views: {

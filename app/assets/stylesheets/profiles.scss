@@ -22,6 +22,13 @@ body {
     height: 48px;
 }
 
+.editprofile{
+    float: right;
+    color: orange;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
 .card .card-header .profile-img {
     width: 96px;
     height: 96px;
@@ -141,6 +148,8 @@ body {
         margin-bottom: 5px;
     }
 }
+
+
 
 //https://codepen.io/supah/pen/ZWGJeR to pop up image
 //https://stackoverflow.com/questions/37904705/on-click-open-image-in-center-of-screen
