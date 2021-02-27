@@ -1,6 +1,14 @@
-<h1>Editing Post</h1>
+<div class="card mt-2">
+  <div class="card-header bg-primary">
+  <h1 class="text-center text-white" style="font-weight: bolder">Poszt szerkesztése</h1>
+  </div>
+<div class="card-body">
+  <%= render 'form', post: @post %>
+</div>
 
-<%= render 'form', post: @post %>
-
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+  <div class="card-footer bg-primary">
+    <div class="d-flex justify-content-between">
+      <%= link_to 'Vissza', @post,  class: "btn btn-success" %>
+    </div>
+  </div>
+</div>

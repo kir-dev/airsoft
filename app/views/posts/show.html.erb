@@ -1,24 +1,27 @@
-<p id="notice"><%= notice %></p>
+<div class="card mt-2">
+  <div class="card-header bg-primary">
+  <h1 class="text-center text-white " style="font-weight: bolder">
+    <%= @post.title %>
+  </h1>
+  </div>
+<div class="card-body">
+  <% if @post.short_description.present? %>
+    <div>
+      <%= @post.short_description %>
+      <hr>
+    </div>
+  <% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Short description:</strong>
-  <%= @post.short_description %>
-</p>
-
-<p>
-  <strong>Static:</strong>
-  <%= @post.static_id %>
-</p>
-
-<p>
-  <strong>Formatted document:</strong>
-  <%= @post.formatted_document %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+  <div>
+    <%= @post.formatted_document %>
+  </div>
+</div>
+  <div class="card-footer bg-primary">
+  <div class="button-collection">
+    <div class="d-flex justify-content-between">
+      <%= link_to 'Vissza', posts_path, class: "btn btn-success" %>
+      <%= link_to 'Szerkesztés', edit_post_path(@post), class: "btn btn-success " %>
+    </div>
+  </div>
+  </div>
+</div>
