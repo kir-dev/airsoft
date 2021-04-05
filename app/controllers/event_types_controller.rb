@@ -1,5 +1,6 @@
 class EventTypesController < ApplicationController
   before_action :set_event_type, only: %i[ show edit update destroy ]
+  before_action :check_admin
 
   # GET /event_types
   def index

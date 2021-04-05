@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   # Please note, we're using default_scope with this model's static_id
   # Info: https://guides.rubyonrails.org/active_record_querying.html#applying-a-default-scope
+  before_action :check_admin, except: %i[ show index about ]
 
   # GET /posts
   def index

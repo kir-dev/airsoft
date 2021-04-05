@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: %i[ show edit update destroy delete_image add_image ]
+  before_action :check_admin, except: %i[ show index ]
   attr_accessor :render_target
   rescue_from PG::UniqueViolation, :with => :rescue_nonunique
 

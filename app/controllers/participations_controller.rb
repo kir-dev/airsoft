@@ -1,5 +1,6 @@
 class ParticipationsController < ApplicationController
   before_action :set_participation, only: %i[ show edit update destroy ]
+  before_action :check_admin, except: %i[ show index ]
 
   # GET /participations
   def index
