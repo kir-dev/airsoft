@@ -29,7 +29,7 @@
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <%= current_user.name %>
+              <%= current_user.name.nil? ? current_user.email : current_user.name %>
             </a>
             <ul aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end">
               <li>
