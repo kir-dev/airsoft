@@ -18,6 +18,7 @@
 <% end %>
 
 <%# Button for admins %>
+<% if admin_signed_in? %>
 <div class="row justify-content-center mb-2">
   <div class="col-lg-8 col-md-10 col-12">
     <div class="btn-group float-end">
@@ -31,6 +32,7 @@
     </div>
   </div>
 </div>
+<% end %>
 
 <%# Post cards %>
 <div class="row justify-content-center mb-3">
@@ -48,9 +50,12 @@
               </svg>
               <%= post.title %>
             </span>
-            <span class="badge bg-primary align-top">
-              Friss!
-            </span>
+            <%# Checking if it was posted in the last 3 weeks %>
+            <% if (DateTime.now - post.created_at.to_datetime).to_i < 21 %>
+              <span class="badge bg-primary align-top">
+                Friss!
+              </span>
+            <% end %>
           </div>
           <p class="card-text timestamp">Időpontja: 2021. 03. 14.</p>
           <p class="card-text"><%= post.short_description %></p>
