@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :check_admin, only: %i[ index ]
+  before_action :authenticate_user!, except: %i[ new create ]
 
   # GET /users
   def index
@@ -10,39 +12,43 @@ class UsersController < ApplicationController
   def show
   end
 
-  # GET /users/new
+  # GET /users/new --- Managed by Devise
   def new
-    @user = User.new
+    redirect_to new_user_registration_path
   end
 
-  # GET /users/1/edit
+  # GET /users/1/edit --- Managed by Devise
   def edit
+    redirect_to edit_user_registration_path
   end
 
-  # POST /users
+  # POST /users --- Managed by Devise
   def create
-    @user = User.new(user_params)
+    redirect_to edit_user_registration_path
+    # @user = User.new(user_params)
 
-    if @user.save
-      redirect_to @user, notice: "User was successfully created."
-    else
-      render :new, status: :unprocessable_entity
-    end
+    # if @user.save
+    #   redirect_to @user, notice: "User was successfully created."
+    # else
+    #   render :new, status: :unprocessable_entity
+    # end
   end
 
-  # PATCH/PUT /users/1
+  # PATCH/PUT /users/1 --- Managed by Devise
   def update
-    if @user.update(user_params)
-      redirect_to @user, notice: "User was successfully updated."
-    else
-      render :edit, status: :unprocessable_entity
-    end
+    redirect_to edit_user_registration_path
+    # if @user.update(user_params)
+    #   redirect_to @user, notice: "User was successfully updated."
+    # else
+    #   render :edit, status: :unprocessable_entity
+    # end
   end
 
-  # DELETE /users/1
+  # DELETE /users/1 --- Managed by Devise
   def destroy
-    @user.destroy
-    redirect_to users_url, notice: "User was successfully destroyed."
+    redirect_to cancel_user_registration_path
+    # @user.destroy
+    # redirect_to users_url, notice: "User was successfully destroyed."
   end
 
   private
