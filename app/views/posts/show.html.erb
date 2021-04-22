@@ -28,5 +28,5 @@
   </div>
 </div>
 
-<% if !@post.event.nil? && !@post.event.event_type.nil? %>
+<% if @post.event&.event_type %>
   <%= link_to 'Jelentkezek', register_to_event_path(@post) %> |

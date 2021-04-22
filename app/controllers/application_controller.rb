@@ -6,4 +6,7 @@ class ApplicationController < ActionController::Base
           locals: { code: 403, message: "Nincs hozzáférésed a tartalom kezeléséhez." })
       end
     end
+  def login_required
+    redirect_to root_url, notice: "Login required" unless user_signed_in?
+  end
 end

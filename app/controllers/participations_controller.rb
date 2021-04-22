@@ -15,7 +15,7 @@ class ParticipationsController < ApplicationController
   # GET /posts/:post_id/register
   def new
     post = Post.find(params[:post_id])
-    if post.event.nil? || post.event.event_type.nil?
+    if post.event&.event_type.nil?
       redirect_to root_url, notice: "Ehhez az eseményhez nincs jelentkeztető űrlap"
     else
       @JSON          = post.event.event_type.json_form_data
@@ -55,9 +55,6 @@ class ParticipationsController < ApplicationController
 
   private
 
-  def login_required
-    redirect_to root_url, notice: "Login required" unless user_signed_in?
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_participation
