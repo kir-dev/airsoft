@@ -15,6 +15,9 @@
   <div>
     <%= @post.formatted_document %>
   </div>
+  <% if @post.event&.event_type %>
+    <%= link_to 'Jelentkezek', register_to_event_path(@post)%>
+  <% end %>
 </div>
   <div class="card-footer bg-primary">
   <div class="button-collection">
@@ -27,6 +30,3 @@
   </div>
   </div>
 </div>
-
-<% if @post.event&.event_type %>
-  <%= link_to 'Jelentkezek', register_to_event_path(@post) %> |
