@@ -1,7 +1,7 @@
 class ParticipationsController < ApplicationController
   before_action :set_participation, only: %i[ show edit update destroy ]
-  before_action :check_admin, except: %i[ show index ]
-  before_action :login_required, only: %i[ create, new ]
+  before_action :check_admin, except: %i[ show index create new]
+  before_action :login_required, only: %i[ create new ]
 
   # GET /participations
   def index
@@ -29,7 +29,7 @@ class ParticipationsController < ApplicationController
 
   # POST /participations
   def create
-    @participation = Participation.new(participation_params)
+    @participation      = Participation.new(participation_params)
     @participation.user = current_user
     if @participation.save
       redirect_to @participation, notice: "Participation was successfully created."
@@ -54,7 +54,6 @@ class ParticipationsController < ApplicationController
   end
 
   private
-
 
   # Use callbacks to share common setup or constraints between actions.
   def set_participation
