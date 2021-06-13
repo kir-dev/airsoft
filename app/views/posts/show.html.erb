@@ -1,29 +1,32 @@
 <div class="card mt-2">
   <div class="card-header bg-primary">
-  <h1 class="text-center text-white " style="font-weight: bolder">
-    <%= @post.title %>
-  </h1>
+    <h1 class="text-center text-white " style="font-weight: bolder">
+      <%= @post.title %>
+    </h1>
   </div>
-<div class="card-body">
-  <% if @post.short_description.present? %>
-    <div>
-      <%= @post.short_description %>
-      <hr>
-    </div>
-  <% end %>
+  <div class="card-body">
+    <% if @post.short_description.present? %>
+      <div>
+        <%= @post.short_description %>
+        <hr>
+      </div>
+    <% end %>
 
-  <div>
-    <%= @post.formatted_document %>
-  </div>
-</div>
-  <div class="card-footer bg-primary">
-  <div class="button-collection">
-    <div class="d-flex justify-content-between">
-      <%= link_to 'Vissza', posts_path, class: "btn btn-success" %>
-      <% if admin_signed_in? %>
-        <%= link_to 'Szerkesztés', edit_post_path(@post), class: "btn btn-success " %>
-      <% end %>
+    <div>
+      <%= @post.formatted_document %>
     </div>
   </div>
+  <div class="card-footer bg-primary">
+    <div class="button-collection">
+      <div class="d-flex justify-content-between">
+        <%= link_to 'Vissza', posts_path, class: "btn btn-success" %>
+        <% if @post.event&.event_type %>
+          <%= link_to 'Regisztrálok', register_to_event_path(@post.event), class: "btn btn-success" %>
+        <% end %>
+        <% if admin_signed_in? %>
+          <%= link_to 'Szerkesztés', edit_post_path(@post), class: "btn btn-success " %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

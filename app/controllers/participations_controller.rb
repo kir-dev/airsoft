@@ -1,6 +1,6 @@
 class ParticipationsController < ApplicationController
   before_action :set_participation, only: %i[ show edit update destroy ]
-  before_action :check_admin, except: %i[ show index ]
+  before_action :login_required
 
   # GET /participations
   def index
@@ -11,23 +11,33 @@ class ParticipationsController < ApplicationController
   def show
   end
 
-  # GET /participations/new
+  # GET /events/1/register
   def new
-    @participation = Participation.new
+
+    event = Event.find(params[:event_id])
+    if event&.event_type.nil?
+      redirect_to root_url, notice: "Ehhez az eseményhez nincs jelentkező űrlap"
+    else
+      @event_type    = event.event_type
+      @participation = Participation.new(:event => event)
+    end
   end
 
   # GET /participations/1/edit
   def edit
+    @event_type = @participation.event.event_type
   end
 
   # POST /participations
   def create
-    @participation = Participation.new(participation_params)
+    puts current_user
+    @participation      = Participation.new(participation_params)
+    @participation.user = current_user
 
     if @participation.save
-      redirect_to @participation, notice: "Participation was successfully created."
+      render json: { redirect: participation_path(@participation) }, status: :created
     else
-      render :new, status: :unprocessable_entity
+      render json: {}, status: :unprocessable_entity
     end
   end
 
@@ -47,13 +57,14 @@ class ParticipationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_participation
-      @participation = Participation.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def participation_params
-      params.require(:participation).permit(:user_id, :event_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_participation
+    @participation = Participation.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def participation_params
+    params.require(:participation).permit(:event_id, form_data: {})
+  end
 end

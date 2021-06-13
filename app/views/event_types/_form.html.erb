@@ -1,7 +1,8 @@
+
 <%= form_with(model: event_type, local: true) do |form| %>
   <% if event_type.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(event_type.errors.count, "error") %> prohibited this event_type from being saved:</h2>
+      <h2><%= pluralize(event_type.errors.count, "error") %> prohibited this event from being saved:</h2>
 
       <ul>
         <% event_type.errors.full_messages.each do |message| %>
@@ -17,11 +18,11 @@
   </div>
 
   <div class="field">
-    <%= form.label :form_data %>
-    <%= form.text_field :form_data %>
+    <%= react_component("JsonFormBuilder",{schema:@event_type.schema, uischema:@event_type.uischema, token:form_authenticity_token }) %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+

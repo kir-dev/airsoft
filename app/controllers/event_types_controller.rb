@@ -23,7 +23,6 @@ class EventTypesController < ApplicationController
   # POST /event_types
   def create
     @event_type = EventType.new(event_type_params)
-
     if @event_type.save
       redirect_to @event_type, notice: "Event type was successfully created."
     else
@@ -54,6 +53,6 @@ class EventTypesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_type_params
-      params.require(:event_type).permit(:name, :form_data)
+      params.require(:event_type).permit(:name, :schema, :uischema)
     end
 end

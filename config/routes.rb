@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :participations
+  resources :participations, except: [:new]
+  get 'events/:event_id/register', to: 'participations#new', as: 'register_to_event'
+
   resources :rents
   resources :items
   devise_for :users, controllers: {
