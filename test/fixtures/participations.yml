@@ -11,8 +11,9 @@
 #
 # Indexes
 #
-#  index_participations_on_event_id  (event_id)
-#  index_participations_on_user_id   (user_id)
+#  index_participations_on_event_id              (event_id)
+#  index_participations_on_event_id_and_user_id  (event_id,user_id) UNIQUE
+#  index_participations_on_user_id               (user_id)
 #
 # Foreign Keys
 #
