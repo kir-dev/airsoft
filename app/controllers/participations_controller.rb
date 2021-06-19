@@ -31,7 +31,6 @@ class ParticipationsController < ApplicationController
 
   # POST /participations
   def create
-    puts current_user
     @participation      = Participation.new(participation_params)
     @participation.user = current_user
 

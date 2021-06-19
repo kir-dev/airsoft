@@ -24,6 +24,11 @@
         <li class="nav-item">
           <%= link_to 'Rólunk', about_path, class: 'nav-link' %>
         </li>
+        <% if admin_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Űrlapok', event_types_path, class: 'nav-link' %>
+          </li>
+        <% end %>
       </ul>
       <ul class="navbar-nav me-right">
         <% if user_signed_in? %>

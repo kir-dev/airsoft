@@ -14,6 +14,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @event_types = EventType.all.pluck(:name, :id)
   end
 
   # GET /events/1/edit

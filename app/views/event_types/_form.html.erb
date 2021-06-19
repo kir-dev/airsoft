@@ -1,4 +1,3 @@
-
 <%= form_with(model: event_type, local: true) do |form| %>
   <% if event_type.errors.any? %>
     <div id="error_explanation">
@@ -12,17 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="input-group mb-12 mb-2">
+    <div class="input-group-prepend">
+      <%= form.label :name, class: "input-group-text" %>
+
+    </div>
+    <%= form.text_field :name, class: "form-control", required: true %>
   </div>
 
-  <div class="field">
-    <%= react_component("JsonFormBuilder",{schema:@event_type.schema, uischema:@event_type.uischema, token:form_authenticity_token }) %>
-  </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <%= react_component("JsonFormBuilder", { schema: @event_type.schema, uischema: @event_type.uischema, token: form_authenticity_token }) %>
+
+
+  <div class="button-collection mt-2">
+    <div class="d-flex justify-content-left ">
+      <%= form.submit class: "btn btn-success" %>
+    </div>
   </div>
 <% end %>
 
