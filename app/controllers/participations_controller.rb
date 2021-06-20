@@ -31,7 +31,7 @@ class ParticipationsController < ApplicationController
 
   # POST /participations
   def create
-    @participation      = Participation.new(participation_params)
+    @participation      = Participation.new(participation_create_params)
     @participation.user = current_user
 
     if @participation.save
@@ -43,10 +43,10 @@ class ParticipationsController < ApplicationController
 
   # PATCH/PUT /participations/1
   def update
-    if @participation.update(participation_params)
-      redirect_to @participation, notice: "Participation was successfully updated."
+    if @participation.update(participation_update_params)
+      render json: { redirect: participation_path(@participation) }, status: :accepted
     else
-      render :edit, status: :unprocessable_entity
+      render json: {}, status: :unprocessable_entity
     end
   end
 
@@ -64,7 +64,11 @@ class ParticipationsController < ApplicationController
   end
 
   # Only allow a list of trusted parameters through.
-  def participation_params
+  def participation_create_params
     params.require(:participation).permit(:event_id, form_data: {})
+  end
+
+  def participation_update_params
+    params.require(:participation).permit(form_data: {})
   end
 end

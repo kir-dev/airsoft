@@ -11,8 +11,8 @@ class EventRegistrationForm extends React.Component {
         }
     }
     onSubmit({formData}, e) {
-        fetch('/participations', {
-            method: 'POST',
+        fetch(this.props.url, {
+            method: this.props.method,
             headers: {
                 "X-CSRF-Token": this.props.token,
                 "Content-Type": "application/json"
@@ -20,7 +20,7 @@ class EventRegistrationForm extends React.Component {
             body: JSON.stringify({
                 participation:{
                     form_data: formData,
-                    event_id: this.props.eventId || 0
+                    ... ((this.props.method === "POST")? {event_id: this.props.eventId} : {})
                 }
             })
         }).then( async response =>{
@@ -57,6 +57,8 @@ EventRegistrationForm.propTypes = {
     uischema: PropTypes.string,
     token: PropTypes.string,
     eventId: PropTypes.number,
-    form_data: PropTypes.string
+    form_data: PropTypes.string,
+    method: PropTypes.string,
+    url: PropTypes.string
 };
 export default EventRegistrationForm
