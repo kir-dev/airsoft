@@ -16,11 +16,11 @@ class ParticipationsController < ApplicationController
     event = Event.find(params[:event_id])
     if event.event_type.nil?
       redirect_to root_url, notice: "Ehhez az eseményhez nincs jelentkező űrlap"
-    elsif event.participations.exists?(:user => current_user)
+    elsif event.participations.exists?(user: current_user)
       redirect_to root_url, notice: "Erre az eseményre már regisztráltál"
     else
       @event_type    = event.event_type
-      @participation = Participation.new(:event => event)
+      @participation = Participation.new(event: event)
     end
   end
 

@@ -14,12 +14,10 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
-    @event_types = EventType.all.pluck(:name, :id)
   end
 
   # GET /events/1/edit
   def edit
-    @event_types = EventType.all.pluck(:name, :id)
   end
 
   # POST /events
@@ -49,13 +47,14 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def event_params
-      params.require(:event).permit(:post_id, :date, :event_type_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def event_params
+    params.require(:event).permit(:post_id, :date, :event_type_id)
+  end
 end

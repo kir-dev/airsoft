@@ -13,26 +13,29 @@
 
   <div class="input-group mb-12 mb-2">
     <div class="input-group-prepend">
-      <%= form.label :post_id, class:"input-group-text" %>
+      <%= form.label :post_id, class: "input-group-text" %>
 
     </div>
-    <%= form.text_field :post_id, class:"form-control" %>
+    <%= form.text_field :post_id, class: "form-control" %>
   </div>
 
   <div class="input-group mb-12 mb-2">
     <div class="input-group-prepend">
-      <%= form.label :date, class:"input-group-text" %>
+      <%= form.label :date, class: "input-group-text" %>
 
     </div>
-    <%= form.datetime_select :date, class:"form-control" %>
+    <%= form.datetime_select :date, class: "form-control" %>
   </div>
 
   <div class="input-group mb-12 mb-2">
     <div class="input-group-prepend">
-      <%= form.label :event_type_id, "Jelentkező űrlap", class:"input-group-text" %>
+      <%= form.label :event_type_id, "Jelentkező űrlap", class: "input-group-text" %>
 
     </div>
-    <%= form.select :event_type_id, options_for_select(@event_types), include_blank: "Nincs jelentkezés" , class:"form-control" %>
+    <%= form.select :event_type_id,
+                    options_for_select(@event_types = EventType.all.pluck(:name, :id)),
+                    include_blank: "Nincs jelentkezés",
+                    class:         "form-control" %>
   </div>
 
 
