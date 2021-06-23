@@ -19,7 +19,7 @@
 #
 class Event < ApplicationRecord
   belongs_to :post
-  belongs_to :event_type
+  belongs_to :event_type, optional: true
   has_many :participations
   has_many :users, through: :participations
   alias participants users

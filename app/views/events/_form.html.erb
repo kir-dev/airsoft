@@ -11,22 +11,39 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :post_id %>
-    <%= form.text_field :post_id %>
+  <div class="input-group mb-12 mb-2">
+    <div class="input-group-prepend">
+      <%= form.label :post_id, class: "input-group-text" %>
+
+    </div>
+    <%= form.text_field :post_id, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.datetime_select :date %>
+  <div class="input-group mb-12 mb-2">
+    <div class="input-group-prepend">
+      <%= form.label :date, class: "input-group-text" %>
+
+    </div>
+    <%= form.datetime_select :date, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :event_type_id %>
-    <%= form.number_field :event_type_id %>
+  <div class="input-group mb-12 mb-2">
+    <div class="input-group-prepend">
+      <%= form.label :event_type_id, "Jelentkező űrlap", class: "input-group-text" %>
+
+    </div>
+    <%= form.select :event_type_id,
+                    options_for_select(@event_types = EventType.all.pluck(:name, :id)),
+                    include_blank: "Nincs jelentkezés",
+                    class:         "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+
+
+  <div class="button-collection mt-2">
+    <div class="d-flex justify-content-left ">
+      <%= form.submit class: "btn btn-success" %>
+    </div>
   </div>
+
 <% end %>

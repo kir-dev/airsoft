@@ -1,12 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Event Types</h1>
+<h1>Esemény űrlapok</h1>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Form data</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +14,6 @@
     <% @event_types.each do |event_type| %>
       <tr>
         <td><%= event_type.name %></td>
-        <td><%= event_type.form_data %></td>
         <td><%= link_to 'Show', event_type %></td>
         <td><%= link_to 'Edit', edit_event_type_path(event_type) %></td>
         <td><%= link_to 'Destroy', event_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
