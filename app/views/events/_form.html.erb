@@ -13,10 +13,10 @@
 
   <div class="input-group mb-12 mb-2">
     <div class="input-group-prepend">
-      <%= form.label :name,"Esemény neve", class: "input-group-text" %>
+      <%= form.label :name, "Esemény neve", class: "input-group-text" %>
 
     </div>
-    <%= form.text_field :name, class: "form-control"%>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
   <div class="input-group mb-12 mb-2">
@@ -38,7 +38,9 @@
                     class:         "form-control" %>
   </div>
 
-
+  <div class="field">
+    <%= form.rich_text_area :description %>
+  </div>
 
   <div class="button-collection mt-2">
     <div class="d-flex justify-content-left ">

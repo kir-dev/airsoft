@@ -13,5 +13,6 @@ class Event < ApplicationRecord
   belongs_to :event_type, optional: true
   has_many :participations
   has_many :users, through: :participations
+  has_rich_text :description
   alias participants users
 end

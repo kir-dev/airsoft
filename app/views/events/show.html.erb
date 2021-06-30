@@ -9,7 +9,9 @@
   <strong>Date:</strong>
   <%= @event.date %>
 </p>
-
+<div>
+  <%= @event.description %>
+</div>
 <p>
   <% if @event.event_type %>
     <%= link_to 'Regisztrálok', register_to_event_path(@event), class: "btn btn-success" %>
