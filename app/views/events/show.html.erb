@@ -1,18 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Post:</strong>
-  <%= @event.post_id %>
+  <strong>Esemény neve:</strong>
+  <%= @event.name %>
 </p>
 
 <p>
   <strong>Date:</strong>
   <%= @event.date %>
 </p>
-
+<div>
+  <%= @event.description %>
+</div>
 <p>
-  <strong>Event type:</strong>
-  <%= @event.event_type_id %>
+  <% if @event.event_type %>
+    <%= link_to 'Regisztrálok', register_to_event_path(@event), class: "btn btn-success" %>
+  <% end %>
 </p>
 
 <% if admin_signed_in? %>
