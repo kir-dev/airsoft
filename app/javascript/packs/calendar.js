@@ -1,7 +1,4 @@
-import '../../../app/javascript/stylesheets/_variables.scss'
-
 const commonCalendarOptions = {
-  plugins: ['interaction', 'timeGrid', 'dayGrid'],
   views: {
     timeGridOneDay: {
       type: 'timeGrid',
@@ -27,62 +24,42 @@ const commonCalendarOptions = {
   eventColor: '#426145', //primary
   eventBorderColor: '#2f5e4e', //secondary
   eventClick: (calEvent) =>
-    console.log("event details screen")
+    (location.href = `/events/${calEvent.event.id}`)
 }
 
-
-
-function calendarWebView(events, calendarEl) {
+function calendarWebView(data, calendarEl) {
   const calendar = new FullCalendar.Calendar(calendarEl, {
     ...commonCalendarOptions,
-    header: {
+    headerToolbar: {
       left: 'prev,next today',
       center: 'title',
       right: 'timeGridOneDay,timeGridWeek,dayGridMonth',
     },
-    defaultView: 'timeGridWeek',
-    events: events,
+    initialView: 'dayGridMonth',
+    events: data,
     select: (info) => {
       if (info.view.type === 'dayGridMonth') {
         calendar.gotoDate(info.start)
         calendar.changeView('timeGridOneDay')
       } else {
-        console.log("navigate to this event");
+        location.href = `/events/${info.id}`
       }
     }
   })
-  return calendar;
+  return calendar
 }
 
-function calendarMobileView(events, calendarEl) {
+function calendarMobileView(data, calendarEl) {
   const calendar = new FullCalendar.Calendar(calendarEl, {
     ...commonCalendarOptions,
-    header: {
+    headerToolbar: {
       left: 'title',
       center: '',
       right: 'timeGridOneDay,timeGridWeek,dayGridMonth'
     },
-    defaultView: 'timeGridOneDay',
-    customButtons: {
-      prevWeek: {
-        text: '-7',
-        click: () => {
-          calendar.incrementDate({
-            days: -7
-          })
-        }
-      },
-      nextWeek: {
-        text: '+7',
-        click: () => {
-          calendar.incrementDate({
-            days: 7
-          })
-        }
-      }
-    },
-    footer: {
-      center: 'prevWeek,prev,today,next,nextWeek'
+    initialView: 'timeGridWeek',
+    footerToolbar: {
+      center: 'prev,today,next'
     },
     titleFormat: {
       year: 'numeric',
@@ -91,33 +68,32 @@ function calendarMobileView(events, calendarEl) {
       day: 'numeric'
     },
     aspectRatio: 0.75,
-    events: events,
+    events: data,
     select: (info) => {
       if (info.view.type === 'dayGridMonth') {
         calendar.gotoDate(info.start)
         calendar.changeView('timeGridOneDay')
       }
       else {
-        console.log("navigate to this event");
+        location.href = `/events/${info.id}`
       }
     }
   })
-  return calendar;
+  return calendar
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
   var calendarEl = document.getElementById('calendar')
 
-  // TODO fetch events to pass it to the calendarviews
-  var events =[];
-  if (window.innerWidth < 768) {
-    console.log("kezdoben mobilos");
-    calendarMobileView(events, calendarEl).render();
-  }
-  else {
-    console.log("kezdoben webes");
-    calendarWebView(events, calendarEl).render();
-  }
-
+  fetch(`/events.json`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      if (window.innerWidth < 768) {
+        calendarMobileView(data, calendarEl).render()
+      }
+      else {
+        calendarWebView(data, calendarEl).render()
+      }
+    })
 })
