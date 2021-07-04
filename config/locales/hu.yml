@@ -132,9 +132,9 @@ hu:
     select:
       prompt: Válasszon
     submit:
-      create: Új %{model}
+      create: "%{model} létrehozása"
       submit: "%{model} mentése"
-      update: "%{model} módosítása"
+      update: "%{model} mentése"
   number:
     currency:
       format:
