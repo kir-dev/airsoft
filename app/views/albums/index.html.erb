@@ -30,11 +30,11 @@
           <%= link_to album do %>
             <%= image_tag album.thumbnail, class: "bd-placeholder-img card-img-top album-card-thumbnail" %>
           <% end %>
-          <% if !album.post.event.nil? %>
+          <%# if !album.post.event.nil? %>
             <div class="bg-secondary text-white shadow fw-bold rounded album-card-date">
-              <%= raw l album.post.event.date, format: :albumdate %>
+              <%= raw l album.post.created_at, format: :albumdate %>
             </div>
-          <% end %>
+          <%# end %>
 
           <%# Button for admins %>
           <% if admin_signed_in? %>
