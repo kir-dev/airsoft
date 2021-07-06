@@ -47,6 +47,7 @@ hu:
       event:
         date: Dátum  #g
         event_type: :activerecord.models.event_type  #g
+        description: Leírás  #g
         participations: Részvételek  #g
         post: :activerecord.models.post  #g
         users: Felhasználók  #g
