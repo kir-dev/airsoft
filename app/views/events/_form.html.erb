@@ -16,7 +16,7 @@
   <div class="mb-5">
     <%= form.label :event_type_id, "Jelentkező űrlap", class: "form-label" %>
     <%= form.select :event_type_id,
-      EventType.all.collect {|et| [ et.name, et.id ] },
+      EventType.pluck(:name, :id),
       { include_blank: "Nincs jelentkezés!" },
       class: "form-select"
     %>
