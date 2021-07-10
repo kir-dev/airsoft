@@ -2,12 +2,20 @@
   <%= render 'layouts/errors', errors: album.errors %>
 
   <div class="mb-3">
-    <%= form.label :post_id, "Poszt elérése", class: "form-label" %>
-    <div class="input-group">
-      <span class="input-group-text"><%= posts_url %>/</span>
-      <%= form.number_field :post_id, class: "form-control" %>
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-3 align-items-center">
+    <%= form.label :date, class: "form-label" %>
+    <div class="form-control">
+      <%= form.date_select :date, {}, class: "" %>
     </div>
-    <div id="post-help" class="form-text">Add meg, melyik poszthoz szeretnéd hozzáfűzni az albumot!</div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :short_desc, class: "form-label" %>
+    <%= form.text_field :short_desc, class: "form-control" %>
   </div>
 
   <% if page_type == :new %>
