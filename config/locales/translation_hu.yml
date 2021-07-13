@@ -42,7 +42,10 @@ hu:
       album:
         images_attachments: Képek mellékletei  #g
         images_blobs: Képek foltok  #g
-        post: :activerecord.models.post  #g
+        images: Képek
+        title: Cím
+        short_desc: Rövid leírás (opc.)
+        date: Dátum
 
       event:
         date: Dátum  #g

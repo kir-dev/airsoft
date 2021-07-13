@@ -36,4 +36,6 @@ en:
       default: '%Y. %m. %d.'
       datetime: '%Y. %m. %d. %H:%M'
       time: '%H:%M'
+  date:
+    formats:
       albumdate: '%Y.<br />%m.%d.'

@@ -3,13 +3,11 @@
 # Table name: albums
 #
 #  id         :bigint           not null, primary key
+#  date       :date
+#  short_desc :string
+#  title      :string(128)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  post_id    :integer
-#
-# Indexes
-#
-#  index_albums_on_post_id  (post_id) UNIQUE
 #
 require 'test_helper'
 

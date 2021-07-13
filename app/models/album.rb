@@ -3,17 +3,16 @@
 # Table name: albums
 #
 #  id         :bigint           not null, primary key
+#  date       :date
+#  short_desc :string
+#  title      :string(128)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  post_id    :integer
-#
-# Indexes
-#
-#  index_albums_on_post_id  (post_id) UNIQUE
 #
 class Album < ApplicationRecord
-  belongs_to :post
   has_many_attached :images
+  validates :title, presence: true, length: { minimum: 3, maximum: 128 }
+  validates :short_desc, length: { maximum: 255 }
 
   def thumbnail
     if images.empty?
