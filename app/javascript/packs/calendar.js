@@ -7,11 +7,15 @@ const commonCalendarOptions = {
       slotLabelFormat: {
         hour: 'numeric',
         minute: '2-digit',
-        omitZeroMinute: true,
-        meridiem: 'short'
+        meridiem: false
       },
       nowIndicator: true
     }
+  },
+  eventTimeFormat: {
+    hour: 'numeric',
+    minute: '2-digit',
+    meridiem: false
   },
   buttonText: {
     today: 'ma',
@@ -88,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch(`/events.json`)
     .then(response => response.json())
     .then(data => {
-      console.log(data)
       if (window.innerWidth < 768) {
         calendarMobileView(data, calendarEl).render()
       }
