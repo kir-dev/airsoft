@@ -37,6 +37,21 @@
               <%= current_user.name.nil? ? current_user.email : current_user.name %>
             </a>
             <ul aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end">
+              <% if admin_signed_in? %>
+                <li>
+                  <%# TODO: Admin page, see note on project board %>
+                  <%= link_to "Adminisztrátori oldal", "#", class: 'dropdown-item' %>
+                </li>
+              <% end %>
+              <li>
+                <%# TODO: Profile page, see issue #22 %>
+                <%= link_to "Profil", "#", class: 'dropdown-item' %>
+              </li>
+              <% if !signed_in_via_omniauth? %>
+                <li>
+                  <%= link_to "Felhasználó módosítása", edit_user_path(current_user), class: 'dropdown-item' %>
+                </li>
+              <% end %>
               <li>
                 <%= link_to "Kijelentkezés", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
               </li>
