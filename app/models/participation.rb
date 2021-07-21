@@ -25,4 +25,5 @@ class Participation < ApplicationRecord
   belongs_to :event
 
   scope :for_event, ->(event_id) { where('event_id = ?', event_id)}
+  
 end
