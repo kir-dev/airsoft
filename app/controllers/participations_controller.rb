@@ -1,10 +1,12 @@
 class ParticipationsController < ApplicationController
   before_action :set_participation, only: %i[ show edit update destroy ]
   before_action :login_required
+  before_action :check_admin, only: %i[index]
+  before_action :check_ownership, except:  %i[new, create]
 
   # GET /participations
   def index
-    @event_type = Event.find(params[:event_id]).event_type
+    @event = Event.find(params[:event_id])
     @participations = Participation.for_event params[:event_id]
   end
 
@@ -62,6 +64,13 @@ class ParticipationsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_participation
     @participation = Participation.find(params[:id])
+  end
+
+  def check_ownership
+    unless user_signed_in? and (current_user.admin? or current_user == @participation.user)
+      render(layout: "layouts/application", template: "layouts/_html_error",
+             locals: { code: 401, message: "Nincs hozzáférésed a tartalom kezeléséhez." })
+    end
   end
 
   # Only allow a list of trusted parameters through.

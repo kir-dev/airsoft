@@ -1,18 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-
-
-<% if not @event_type %>
+<% if not @event.event_type %>
   <h1> Ehhez az eseményhez nem tartozik jelentkeztető űrlap</h1>
 <% else %>
+
   <h1>Résztvevők</h1>
-  <p>
-    <%= @participations.map {|p| {:user => p.user.name ? p.user.name : p.user.email , :form_data => p.form_data} }.to_json %>
-    <%= @event_type.schema %>
-  </p>
-  <%= react_component("ParticipationList",
-                      { schema: @event_type.schema,
-                        data:   @participations.map {|p| {:user => p.user.name ? p.user.name : p.user.email , :form_data => p.form_data} }.to_json
-                      })
-  %>
+
+  <div class="table-responsive">
+    <%= render 'table' %>
+  </div>
+
+  <%= link_to 'Vissza', event_path(@event) %>
 <% end %>
