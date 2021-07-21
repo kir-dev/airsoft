@@ -4,7 +4,8 @@ class ParticipationsController < ApplicationController
 
   # GET /participations
   def index
-    @participations = Participation.all
+    @event_type = Event.find(params[:event_id]).event_type
+    @participations = Participation.for_event params[:event_id]
   end
 
   # GET /participations/1

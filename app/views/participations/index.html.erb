@@ -1,27 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Participations</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Event</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @participations.each do |participation| %>
-      <tr>
-        <td><%= participation.user_id %></td>
-        <td><%= participation.event_id %></td>
-        <td><%= link_to 'Show', participation %></td>
-        <td><%= link_to 'Edit', edit_participation_path(participation) %></td>
-        <td><%= link_to 'Destroy', participation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<% if not @event_type %>
+  <h1> Ehhez az eseményhez nem tartozik jelentkeztető űrlap</h1>
+<% else %>
+  <h1>Résztvevők</h1>
+  <p>
+    <%= @participations.map {|p| {:user => p.user.name ? p.user.name : p.user.email , :form_data => p.form_data} }.to_json %>
+    <%= @event_type.schema %>
+  </p>
+  <%= react_component("ParticipationList",
+                      { schema: @event_type.schema,
+                        data:   @participations.map {|p| {:user => p.user.name ? p.user.name : p.user.email , :form_data => p.form_data} }.to_json
+                      })
+  %>
+<% end %>
