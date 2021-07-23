@@ -48,11 +48,11 @@ hu:
         date: Dátum
 
       event:
-        date: Dátum  #g
+        start: Esemény kezdete
+        end: Esemény vége
         event_type: :activerecord.models.event_type  #g
         description: Leírás  #g
         participations: Részvételek  #g
-        post: :activerecord.models.post  #g
         users: Felhasználók  #g
 
       event_type:

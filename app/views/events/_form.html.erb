@@ -7,9 +7,16 @@
   </div>
 
   <div class="mb-2 align-items-center">
-    <%= form.label :date, class: "form-label" %>
+    <%= form.label :start, class: "form-label" %>
     <div class="form-control">
-      <%= form.datetime_select :date, {}, class: "" %>
+      <%= form.datetime_select :start, {}, class: "" %>
+    </div>
+  </div>
+
+  <div class="mb-2 align-items-center">
+    <%= form.label :end, class: "form-label" %>
+    <div class="form-control">
+      <%= form.datetime_select :end, {}, class: "" %>
     </div>
   </div>
 
