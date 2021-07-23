@@ -1,8 +1,16 @@
 <div class="card mt-2">
-  <div class="card-header bg-primary">
-    <h1 class="text-center text-white " style="font-weight: bolder">
-      <%= @post.title %>
-    </h1>
+  <div class="card-header bg-primary d-md-flex">
+    <% if @post.image.attached? %>
+      <%= image_tag @post.image, class: "thumbnail-in-post" %>
+    <% else %>
+      <%= image_tag image_path('default-post-thumbnail.jpg'), class: "thumbnail-in-post" %>
+    <% end %>
+    <div class="ms-md-3 mt-2">
+      <h1 class="text-white" style="font-weight: bolder">
+        <%= @post.title %>
+      </h1>
+      <p class="text-muted">Közzétéve <%= l @post.created_at %></p>
+    </div>
   </div>
   <div class="card-body">
     <% if @post.short_description.present? %>
@@ -18,10 +26,15 @@
   </div>
   <div class="card-footer bg-primary">
     <div class="button-collection">
-      <div class="d-flex justify-content-between">
-        <%= link_to 'Vissza', posts_path, class: "btn btn-success" %>
+      <div class="d-flex flex-wrap">
+        <div class="d-flex mt-1">
+          <%= link_to 'Vissza', posts_path, class: "btn btn-success h-min" %>
+        </div>
         <% if admin_signed_in? %>
-          <%= link_to 'Szerkesztés', edit_post_path(@post), class: "btn btn-success " %>
+          <div class="d-flex flex-grow-1 mt-1 justify-content-end">
+            <%= link_to 'Szerkesztés', edit_post_path(@post), class: "btn btn-success" %>
+            <%= link_to 'Törlés', @post, class: "btn btn-danger ms-2", method: :delete, data: { confirm: "Biztosan törlöd az posztot?" } %>
+          </div>
         <% end %>
       </div>
     </div>

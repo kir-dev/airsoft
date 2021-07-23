@@ -10,7 +10,7 @@
 #  updated_at        :datetime         not null
 #
 class Post < ApplicationRecord
-  has_one :album
+  has_one_attached :image
   has_rich_text :formatted_document
   enum static_id: [:common, :about]
 

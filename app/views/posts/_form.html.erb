@@ -6,9 +6,29 @@
     <%= form.text_field :title, class: "form-control" %>
   </div>
 
-  <div class="mb-5">
+  <div class="mb-2">
     <%= form.label :short_description, class: "form-label" %>
     <%= form.text_field :short_description, class: "form-control" %>
+  </div>
+
+  <div class="mb-5">
+    <%= form.label :image, class: "form-label" %>
+    <div class="input-group">
+      <%= form.file_field :image, multiple: false, accept: 'image/png, image/jpeg', class: "form-control", id: "imagefield" %>
+      <button id="clearbtn" class="btn btn-outline-danger" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    
+    <% if post.image.attached? %>
+      <div class="form-label mt-2">Jelenlegi indexkép:</div>
+      <div><%= image_tag post.image, class: "thumbnail" %></div>
+      <div class="mt-2">
+        <%= link_to "Indexkép törlése", delete_image_post_path(post), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Biztosan törlöd az indexképet?" } %>
+      </div>
+    <% end %>
   </div>
 
   <div class="mb-2">
@@ -21,4 +41,8 @@
       <%= form.submit class: "btn btn-success" %>
     </div>
   </div>
+<% end %>
+
+<% content_for :javascripts do %>
+  <%= javascript_pack_tag 'post-create', 'data-turbolinks-track': 'reload' %>
 <% end %>
