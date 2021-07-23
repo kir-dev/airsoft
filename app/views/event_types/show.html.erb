@@ -16,5 +16,7 @@
 </div>
 
 
-<%= link_to 'Módosítás', edit_event_type_path(@event_type) %> |
-<%= link_to 'Vissza', event_types_path %>
+<%= link_to 'Edit', edit_event_type_path(@event_type) %> |
+<%= link_to 'Másolás', copy_event_type_path(@event_type), method: :post %> |
+<%= link_to 'Törlés', @event_type, method: :delete, data: { confirm: 'Biztosan törlöd?' } %> |
+<%= link_to 'Back', event_types_path %>
