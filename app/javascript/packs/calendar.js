@@ -27,8 +27,7 @@ const commonCalendarOptions = {
   selectable: true,
   eventColor: '#426145', //primary
   eventBorderColor: '#2f5e4e', //secondary
-  eventClick: (calEvent) =>
-    (location.href = `/events/${calEvent.event.id}`)
+  eventClick: calEvent => location.href = `/events/${calEvent.event.id}`
 }
 
 function calendarWebView(data, calendarEl) {
@@ -45,8 +44,6 @@ function calendarWebView(data, calendarEl) {
       if (info.view.type === 'dayGridMonth') {
         calendar.gotoDate(info.start)
         calendar.changeView('timeGridOneDay')
-      } else {
-        location.href = `/events/${info.id}`
       }
     }
   })
@@ -78,9 +75,6 @@ function calendarMobileView(data, calendarEl) {
         calendar.gotoDate(info.start)
         calendar.changeView('timeGridOneDay')
       }
-      else {
-        location.href = `/events/${info.id}`
-      }
     }
   })
   return calendar
@@ -91,12 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fetch(`/events.json`)
     .then(response => response.json())
-    .then(data => {
-      if (window.innerWidth < 768) {
-        calendarMobileView(data, calendarEl).render()
-      }
-      else {
-        calendarWebView(data, calendarEl).render()
-      }
-    })
+    .then(data => window.innerWidth < 768 ?
+      calendarMobileView(data, calendarEl).render() :
+      calendarWebView(data, calendarEl).render()
+    )
 })
