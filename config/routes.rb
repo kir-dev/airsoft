@@ -7,8 +7,9 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :participations, except: [:new]
+  resources :participations, except: [:new, :index]
   get 'events/:event_id/register', to: 'participations#new', as: 'register_to_event'
+  get 'events/:event_id/registrations', to: 'participations#index', as: 'event_registrations'
 
   resources :rents
   resources :items

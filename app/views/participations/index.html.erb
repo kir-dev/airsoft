@@ -1,27 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Participations</h1>
+<% if not @event.event_type %>
+  <h1> Ehhez az eseményhez nem tartozik jelentkeztető űrlap</h1>
+<% else %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Event</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <h1>Résztvevők</h1>
 
-  <tbody>
-    <% @participations.each do |participation| %>
-      <tr>
-        <td><%= participation.user_id %></td>
-        <td><%= participation.event_id %></td>
-        <td><%= link_to 'Show', participation %></td>
-        <td><%= link_to 'Edit', edit_participation_path(participation) %></td>
-        <td><%= link_to 'Destroy', participation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="table-responsive">
+    <%= render 'table' %>
+  </div>
 
-<br>
+  <%= link_to 'Vissza', event_path(@event), class: "btn btn-success" %>
+  <%= link_to 'Letöltés', event_registrations_path(@event, format: :csv), class: "btn btn-primary" %>
+
+<% end %>
