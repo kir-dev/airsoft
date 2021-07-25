@@ -6,7 +6,7 @@ hu:
       active_storage/blob: Aktív tárhely / blob  #g
       album: Album  #g
       event: Esemény  #g
-      event_type: Esemény típus  #g
+      event_type: Űrlap  #g
       item: Tétel  #g
       participation: Részvétel  #g
       post: Poszt  #g

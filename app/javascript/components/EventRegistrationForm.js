@@ -10,6 +10,7 @@ class EventRegistrationForm extends React.Component {
             errorMessage: ''
         }
     }
+
     onSubmit({formData}, e) {
         fetch(this.props.url, {
             method: this.props.method,
@@ -18,20 +19,20 @@ class EventRegistrationForm extends React.Component {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                participation:{
+                participation: {
                     form_data: formData,
-                    ... ((this.props.method === "POST")? {event_id: this.props.eventId} : {})
+                    ...((this.props.method === "POST") ? {event_id: this.props.eventId} : {})
                 }
             })
-        }).then( async response =>{
-           if(response.ok){
+        }).then(async response => {
+            if (response.ok) {
                 const data = await response.json();
                 window.location.replace(data.redirect || "/")
-           }else{
+            } else {
                 this.setState({
                     errorMessage: 'Szerveroldali hiba történt a regisztráció során!'
                 })
-           }
+            }
         })
     }
 
@@ -46,7 +47,9 @@ class EventRegistrationForm extends React.Component {
                     uiSchema={JSON.parse(this.props.uischema)}
                     onSubmit={this.onSubmit}
                     formData={JSON.parse(this.props.form_data || '{}')}
-                />
+                >
+                    <button className="btn btn-primary" type="submit">Jelentkezés</button>
+                </Form>
             </div>
         );
     }
