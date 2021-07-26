@@ -1035,10 +1035,10 @@
   dependencies:
     prop-types "^15.7.2"
 
-"@ginkgo-bioworks/react-json-schema-form-builder@^2.4.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@ginkgo-bioworks/react-json-schema-form-builder/-/react-json-schema-form-builder-2.4.2.tgz#811a36d47190cf2e716b0fcb912b017a5148b34e"
-  integrity sha512-yRHUtpTmfPFXGLGliBsOLXOEcHXHOETWlw3fcF17qXp11JKKbuLr6pcn62EjNTZEB35yETtthJtJFMm+Y+yX3w==
+"@ginkgo-bioworks/react-json-schema-form-builder@^2.5.1":
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@ginkgo-bioworks/react-json-schema-form-builder/-/react-json-schema-form-builder-2.5.1.tgz#a9f6143669fcbecb1a347160657e6b36dfd79360"
+  integrity sha512-8iszPYA3LEwa69Nxj5qjnILWUznqrhZxvj08Y4el34ojFuoOgJrFwYgrTb6SEzq7w7koIlaGsvhbIm1ijsCnlg==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.35"
     "@fortawesome/free-solid-svg-icons" "^5.15.3"
