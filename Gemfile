@@ -48,6 +48,11 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Annotate models
   gem 'annotate'
+
+  #lint ruby code
+  gem 'rubocop', require: false
+  #lint rails specific code
+  gem 'rubocop-rails', require: false
 end
 
 group :development do
