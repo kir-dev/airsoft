@@ -5,17 +5,17 @@ class RentsControllerTest < ActionDispatch::IntegrationTest
     @rent = rents(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get rents_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_rent_url
     assert_response :success
   end
 
-  test "should create rent" do
+  test 'should create rent' do
     assert_difference('Rent.count') do
       post rents_url, params: { rent: { end_date: @rent.end_date, item_id: @rent.item_id, user_id: @rent.user_id } }
     end
@@ -23,22 +23,23 @@ class RentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to rent_url(Rent.last)
   end
 
-  test "should show rent" do
+  test 'should show rent' do
     get rent_url(@rent)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_rent_url(@rent)
     assert_response :success
   end
 
-  test "should update rent" do
-    patch rent_url(@rent), params: { rent: { end_date: @rent.end_date, item_id: @rent.item_id, user_id: @rent.user_id } }
+  test 'should update rent' do
+    patch rent_url(@rent),
+          params: { rent: { end_date: @rent.end_date, item_id: @rent.item_id, user_id: @rent.user_id } }
     assert_redirected_to rent_url(@rent)
   end
 
-  test "should destroy rent" do
+  test 'should destroy rent' do
     assert_difference('Rent.count', -1) do
       delete rent_url(@rent)
     end

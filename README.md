@@ -77,6 +77,16 @@ http://localhost:3000/users/auth/authsch/callback
 ```
 Complete '.env' with the `client id` and `client secret`, and restart the server.
 
+## Linting
+The project uses rubocop to enforce good quality code. On the local machine you can run rubocop to detect mistakes with
+```bash
+rubocop
+```
+And you can automatically fix minor mistakes with 
+```bash
+rubocop -a
+```
+
 ## Licence
 
 * Front page background image by [Michael Mráz](https://unsplash.com/photos/tyBPrBKMp84) on [Unsplash](https://unsplash.com/).

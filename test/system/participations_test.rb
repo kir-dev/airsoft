@@ -1,45 +1,45 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class ParticipationsTest < ApplicationSystemTestCase
   setup do
     @participation = participations(:one)
   end
 
-  test "visiting the index" do
+  test 'visiting the index' do
     visit participations_url
-    assert_selector "h1", text: "Participations"
+    assert_selector 'h1', text: 'Participations'
   end
 
-  test "creating a Participation" do
+  test 'creating a Participation' do
     visit participations_url
-    click_on "New Participation"
+    click_on 'New Participation'
 
-    fill_in "Event", with: @participation.event_id
-    fill_in "User", with: @participation.user_id
-    click_on "Create Participation"
+    fill_in 'Event', with: @participation.event_id
+    fill_in 'User', with: @participation.user_id
+    click_on 'Create Participation'
 
-    assert_text "Participation was successfully created"
-    click_on "Back"
+    assert_text 'Participation was successfully created'
+    click_on 'Back'
   end
 
-  test "updating a Participation" do
+  test 'updating a Participation' do
     visit participations_url
-    click_on "Edit", match: :first
+    click_on 'Edit', match: :first
 
-    fill_in "Event", with: @participation.event_id
-    fill_in "User", with: @participation.user_id
-    click_on "Update Participation"
+    fill_in 'Event', with: @participation.event_id
+    fill_in 'User', with: @participation.user_id
+    click_on 'Update Participation'
 
-    assert_text "Participation was successfully updated"
-    click_on "Back"
+    assert_text 'Participation was successfully updated'
+    click_on 'Back'
   end
 
-  test "destroying a Participation" do
+  test 'destroying a Participation' do
     visit participations_url
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      click_on 'Destroy', match: :first
     end
 
-    assert_text "Participation was successfully destroyed"
+    assert_text 'Participation was successfully destroyed'
   end
 end
