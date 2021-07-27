@@ -17,8 +17,13 @@ Rails.application.routes.draw do
     omniauth_callbacks: "omniauth_callbacks"
   }
 
+  resources :event_types do
+    member do
+      post :copy
+    end
+  end
+
   resources :users
-  resources :event_types
   resources :events
   resources :posts
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

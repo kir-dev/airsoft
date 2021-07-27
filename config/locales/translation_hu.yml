@@ -58,7 +58,7 @@ hu:
       event_type:
         events: Események  #g
         form_data: Űrlapadatok  #g
-        name: Név  #g
+        name: Űrlap neve  #g
 
       item:
         description: Leírás  #g
