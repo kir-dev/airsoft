@@ -1,7 +1,6 @@
 require: rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 2.5
   Exclude:
     - 'db/**/*'
     - 'config/**/*'
@@ -11,7 +10,13 @@ AllCops:
     - '.git/**/*'
     - '.github/**/*'
 
+Style/GuardClause:
+  Enabled: true
+  MinBodyLength: 3
+
+#disabled cops
 Style/FrozenStringLiteralComment:
   Enabled: false
 Documentation:
-  Enabled: false
+    Enabled: false
+

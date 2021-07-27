@@ -8,15 +8,14 @@ module ParticipationsHelper
   end
 
   def generate_participation_csv(event)
-    headers        = get_table_headers(event.event_type)
-    participations = event.participations
+    headers = get_table_headers(event.event_type)
 
     CSV.generate(headers: true) do |csv|
       csv << %w[email registration_date] + headers.map { |header| header[:name] }
-      participations.each do |participation|
+      event.participations.each do |participation|
         csv << [participation.user.email, participation.created_at] + headers.map do |header|
-                                                                        participation.form_data[header[:key]]
-                                                                      end
+          participation.form_data[header[:key]]
+        end
       end
     end
   end

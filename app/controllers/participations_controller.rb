@@ -18,7 +18,7 @@ class ParticipationsController < ApplicationController
       respond_to do |format|
         format.html
         format.csv do
-          send_data helpers.generate_participation_csv(@event), filename: "participations_export-#{Date.today}.csv"
+          send_data helpers.generate_participation_csv(@event), filename: "participations_export-#{Time.zone.today}.csv"
         end
       end
     end
