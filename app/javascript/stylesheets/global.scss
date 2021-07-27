@@ -14,24 +14,32 @@ a .clickable:hover, .clickable:hover {
 
   .title {
     color: $link-color;
-    transition: all 150ms;
+    transition: all 150ms ease-in-out;
   }
   .timestamp {
     color: $link-color;
-    transition: all 150ms;
+    transition: all 150ms ease-in-out;
   }
 }
 
 .thumbnail {
-  height: 10rem;
+  height: 12rem;
   object-fit: cover;
-  max-width: 10rem;
+  max-width: 20rem;
+}
+
+.thumbnail-in-post {
+  max-width: 20rem;
 }
 
 @media (max-width: 768px) {
   .thumbnail {
-    height: 6rem;
-    max-width: 6rem;
+    height: 9rem;
+    max-width: 15rem;
+  }
+
+  .thumbnail-in-post {
+    max-width: 100%;
   }
 }
 

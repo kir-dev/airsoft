@@ -71,12 +71,11 @@ hu:
         user: :activerecord.models.user  #g
 
       post:
-        album: :activerecord.models.album  #g
-        event: :activerecord.models.event  #g
         rich_text_formatted_document: Formázott dokumentum  #g
         formatted_document: Formázott dokumentum  #g
         short_description: Rövid leírás  #g
         title: Cím  #g
+        image: Indexkép (opc.)
 
       rent:
         end_date: Befejezés dátuma  #g

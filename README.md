@@ -76,3 +76,8 @@ Create an Outh Client at https://auth.sch.bme.hu with the follwing callback url:
 http://localhost:3000/users/auth/authsch/callback
 ```
 Complete '.env' with the `client id` and `client secret`, and restart the server.
+
+## Licence
+
+* Front page background image by [Michael Mráz](https://unsplash.com/photos/tyBPrBKMp84) on [Unsplash](https://unsplash.com/).
+* Default post thumbnail image by [Daniel Stuben](https://unsplash.com/photos/-9ZbwBDOX9c) on [Unsplash](https://unsplash.com/).

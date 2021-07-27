@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show edit update destroy delete_image ]
   # Please note, we're using default_scope with this model's static_id
   # Info: https://guides.rubyonrails.org/active_record_querying.html#applying-a-default-scope
   before_action :check_admin, except: %i[ show index about ]
@@ -25,6 +25,7 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
+    @post.image = params[:post][:image]
 
     if @post.save
       redirect_to @post, notice: "Post was successfully created."
@@ -62,6 +63,12 @@ class PostsController < ApplicationController
     end
   end
 
+  # DELETE /posts/1/delete_image
+  def delete_image
+    @post.image.purge
+    redirect_to @post, notice: "Indexkép törölve!"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -70,6 +77,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :short_description, :formatted_document)
+      params.require(:post).permit(:title, :short_description, :formatted_document, :image)
     end
 end
