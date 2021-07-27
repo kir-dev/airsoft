@@ -1,45 +1,45 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class EventTypesTest < ApplicationSystemTestCase
   setup do
     @event_type = event_types(:one)
   end
 
-  test "visiting the index" do
+  test 'visiting the index' do
     visit event_types_url
-    assert_selector "h1", text: "Event Types"
+    assert_selector 'h1', text: 'Event Types'
   end
 
-  test "creating a Event type" do
+  test 'creating a Event type' do
     visit event_types_url
-    click_on "New Event Type"
+    click_on 'New Event Type'
 
-    fill_in "Form data", with: @event_type.form_data
-    fill_in "Name", with: @event_type.name
-    click_on "Create Event type"
+    fill_in 'Form data', with: @event_type.form_data
+    fill_in 'Name', with: @event_type.name
+    click_on 'Create Event type'
 
-    assert_text "Event type was successfully created"
-    click_on "Back"
+    assert_text 'Event type was successfully created'
+    click_on 'Back'
   end
 
-  test "updating a Event type" do
+  test 'updating a Event type' do
     visit event_types_url
-    click_on "Edit", match: :first
+    click_on 'Edit', match: :first
 
-    fill_in "Form data", with: @event_type.form_data
-    fill_in "Name", with: @event_type.name
-    click_on "Update Event type"
+    fill_in 'Form data', with: @event_type.form_data
+    fill_in 'Name', with: @event_type.name
+    click_on 'Update Event type'
 
-    assert_text "Event type was successfully updated"
-    click_on "Back"
+    assert_text 'Event type was successfully updated'
+    click_on 'Back'
   end
 
-  test "destroying a Event type" do
+  test 'destroying a Event type' do
     visit event_types_url
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      click_on 'Destroy', match: :first
     end
 
-    assert_text "Event type was successfully destroyed"
+    assert_text 'Event type was successfully destroyed'
   end
 end

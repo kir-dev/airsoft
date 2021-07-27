@@ -10,3 +10,8 @@ AllCops:
     - 'vendor/**/*'
     - '.git/**/*'
     - '.github/**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Documentation:
+  Enabled: false

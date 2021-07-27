@@ -1,5 +1,5 @@
 class ParticipationsController < ApplicationController
-  before_action :set_participation, only: %i[ show edit update destroy ]
+  before_action :set_participation, only: %i[show edit update destroy]
   before_action :login_required
   before_action :check_ownership, only: %i[show edit update destroy]
   before_action :check_admin, only: %i[index]
@@ -11,28 +11,29 @@ class ParticipationsController < ApplicationController
     @participations = Participation.for_event params[:event_id]
 
     if @event.event_type.nil?
-      redirect_to event_path(@event), notice: "Ehhez az eseményhez nincs jelentkező űrlap"
+      redirect_to event_path(@event), notice: 'Ehhez az eseményhez nincs jelentkező űrlap'
     elsif @event.participations.empty?
-      redirect_to event_path(@event), notice: "Erre az eseményre még nem regisztráltak"
+      redirect_to event_path(@event), notice: 'Erre az eseményre még nem regisztráltak'
     else
       respond_to do |format|
         format.html
-        format.csv { send_data helpers.generate_participation_csv(@event), filename: "participations_export-#{Date.today}.csv" }
+        format.csv do
+          send_data helpers.generate_participation_csv(@event), filename: "participations_export-#{Date.today}.csv"
+        end
       end
     end
   end
 
   # GET /participations/1
-  def show
-  end
+  def show; end
 
   # GET /events/1/register
   def new
     event = Event.find(params[:event_id])
     if event.event_type.nil?
-      redirect_to event_path(event), notice: "Ehhez az eseményhez nincs jelentkező űrlap"
+      redirect_to event_path(event), notice: 'Ehhez az eseményhez nincs jelentkező űrlap'
     elsif event.participations.exists?(user: current_user)
-      redirect_to event_path(event), notice: "Erre az eseményre már regisztráltál"
+      redirect_to event_path(event), notice: 'Erre az eseményre már regisztráltál'
     else
       @event_type    = event.event_type
       @participation = Participation.new(event: event)
@@ -68,7 +69,7 @@ class ParticipationsController < ApplicationController
   # DELETE /participations/1
   def destroy
     @participation.destroy
-    redirect_to participations_url, notice: "Participation was successfully destroyed."
+    redirect_to participations_url, notice: 'Participation was successfully destroyed.'
   end
 
   private
@@ -79,9 +80,9 @@ class ParticipationsController < ApplicationController
   end
 
   def check_ownership
-    unless user_signed_in? and (current_user.admin? or current_user == @participation.user)
-      render(layout: "layouts/application", template: "layouts/_html_error",
-             locals: { code: 401, message: "Nincs hozzáférésed a tartalom kezeléséhez." })
+    unless user_signed_in? && (current_user.admin? || (current_user == @participation.user))
+      render(layout: 'layouts/application', template: 'layouts/_html_error',
+             locals: { code: 401, message: 'Nincs hozzáférésed a tartalom kezeléséhez.' })
     end
   end
 

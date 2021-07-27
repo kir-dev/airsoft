@@ -12,7 +12,7 @@
 class Post < ApplicationRecord
   has_one_attached :image
   has_rich_text :formatted_document
-  enum static_id: [:common, :about]
+  enum static_id: { common: 0, about: 1 }
 
   default_scope { where(static_id: :common) }
 end

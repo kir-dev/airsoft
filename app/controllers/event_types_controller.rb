@@ -1,5 +1,5 @@
 class EventTypesController < ApplicationController
-  before_action :set_event_type, only: %i[ show edit update destroy copy ]
+  before_action :set_event_type, only: %i[show edit update destroy copy]
   before_action :check_admin
 
   # GET /event_types
@@ -8,8 +8,7 @@ class EventTypesController < ApplicationController
   end
 
   # GET /event_types/1
-  def show
-  end
+  def show; end
 
   # GET /event_types/new
   def new
@@ -17,14 +16,13 @@ class EventTypesController < ApplicationController
   end
 
   # GET /event_types/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /event_types
   def create
     @event_type = EventType.new(event_type_params)
     if @event_type.save
-      redirect_to @event_type, notice: "Event type was successfully created."
+      redirect_to @event_type, notice: 'Event type was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +31,7 @@ class EventTypesController < ApplicationController
   # PATCH/PUT /event_types/1
   def update
     if @event_type.update(event_type_params)
-      redirect_to @event_type, notice: "Event type was successfully updated."
+      redirect_to @event_type, notice: 'Event type was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,15 +40,15 @@ class EventTypesController < ApplicationController
   # DELETE /event_types/1
   def destroy
     @event_type.destroy
-    redirect_to event_types_url, notice: "Event type was successfully destroyed."
+    redirect_to event_types_url, notice: 'Event type was successfully destroyed.'
   end
 
   # POST /event_types/1/copy
   def copy
     event_type_copy = @event_type.dup
-    event_type_copy.name += " másolata"
+    event_type_copy.name += ' másolata'
     event_type_copy.save
-    redirect_to edit_event_type_url(event_type_copy), notice: "Űrlap sikeresen másolva!"
+    redirect_to edit_event_type_url(event_type_copy), notice: 'Űrlap sikeresen másolva!'
   end
 
   private

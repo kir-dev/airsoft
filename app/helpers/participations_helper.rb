@@ -2,8 +2,8 @@ require 'csv'
 module ParticipationsHelper
   def get_table_headers(event_type)
     schema = JSON.parse event_type.schema
-    schema["properties"].map do |key, prop|
-      { :key => key, :name => prop["title"] }
+    schema['properties'].map do |key, prop|
+      { key: key, name: prop['title'] }
     end
   end
 
@@ -12,10 +12,11 @@ module ParticipationsHelper
     participations = event.participations
 
     CSV.generate(headers: true) do |csv|
-      csv << %w{email registration_date} + headers.map { |header| header[:name] }
+      csv << %w[email registration_date] + headers.map { |header| header[:name] }
       participations.each do |participation|
-
-        csv << [participation.user.email, participation.created_at] + headers.map { |header| participation.form_data[header[:key]] }
+        csv << [participation.user.email, participation.created_at] + headers.map do |header|
+                                                                        participation.form_data[header[:key]]
+                                                                      end
       end
     end
   end
