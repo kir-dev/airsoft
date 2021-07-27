@@ -7,8 +7,9 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :participations, except: [:new]
+  resources :participations, except: [:new, :index]
   get 'events/:event_id/register', to: 'participations#new', as: 'register_to_event'
+  get 'events/:event_id/registrations', to: 'participations#index', as: 'event_registrations'
 
   resources :rents
   resources :items
@@ -16,10 +17,19 @@ Rails.application.routes.draw do
     omniauth_callbacks: "omniauth_callbacks"
   }
 
+  resources :event_types do
+    member do
+      post :copy
+    end
+  end
+
   resources :users
-  resources :event_types
   resources :events
-  resources :posts
+  resources :posts do
+    member do
+      delete :delete_image
+    end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root to: 'posts#index'

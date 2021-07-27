@@ -1,13 +1,34 @@
-<p id="notice"><%= notice %></p>
+<h1 class="text-center my-4">Űrlap előnézet</h1>
 
-<h1>Esemény űrlap előnézet</h1>
-
-<div class="row">
-  <div class="col-12 col-md-6">
-    <%= react_component("JsonFormPreview", {schema: @event_type.schema, uischema: @event_type.uischema}, {prerender:true}) %>
+<div class="row justify-content-center">
+  <div class="col-12 col-lg-8">
+    <div class="card">
+      <div class="card-header">
+        <%= @event_type.name %>
+      </div>
+      <div class="card-body">
+        <%= react_component("JsonFormPreview", { schema: @event_type.schema, uischema: @event_type.uischema }, { prerender: true }) %>
+      </div>
+      <div class="card-footer">
+        <div class="button-collection">
+          <div class="d-flex flex-wrap-reverse">
+            <div class="d-flex mt-1">
+              <%= link_to 'Vissza', event_types_path, class: "btn btn-sm btn-outline-primary mt-1" %>
+            </div>
+            <div class="d-flex flex-grow-1 mt-1 justify-content-end flex-wrap">
+              <%= link_to 'Módosítás', edit_event_type_path(@event_type), class: "btn btn-sm btn-outline-primary ms-1 mt-1" %>
+              <%= link_to('Másolás', copy_event_type_path(@event_type), 
+                data: { confirm: 'Lemásolni készülsz a kiválasztott űrlapot. Folytatás?' },
+                method: :post, 
+                class: "btn btn-outline-primary btn-sm ms-1 mt-1") %>
+              <%= link_to('Törlés', @event_type, 
+                data: { confirm: 'Biztosan törlöd?' }, 
+                method: :delete, 
+                class: "btn btn-sm btn-outline-danger ms-1 mt-1") %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-
-<%= link_to 'Edit', edit_event_type_path(@event_type) %> |
-<%= link_to 'Back', event_types_path %>
