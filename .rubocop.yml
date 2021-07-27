@@ -1,6 +1,9 @@
+inherit_from: .rubocop_todo.yml
+# Include rails specific cops
 require: rubocop-rails
-
+# Global settings for all cops
 AllCops:
+  NewCops: enable
   Exclude:
     - 'db/**/*'
     - 'config/**/*'
@@ -9,14 +12,18 @@ AllCops:
     - 'vendor/**/*'
     - '.git/**/*'
     - '.github/**/*'
-
+# Cop specific settings
 Style/GuardClause:
-  Enabled: true
   MinBodyLength: 3
-
-#disabled cops
+Metrics/AbcSize:
+  Max: 25
+Metrics/BlockLength:
+  Max: 50
+Metrics/MethodLength:
+  Max: 20
+# Disabled cops
 Style/FrozenStringLiteralComment:
   Enabled: false
-Documentation:
-    Enabled: false
+Style/Documentation:
+  Enabled: false
 
