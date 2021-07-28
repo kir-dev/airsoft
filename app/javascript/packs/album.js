@@ -1,3 +1,5 @@
+import Masonry from 'masonry-layout'
+import imagesLoaded from 'imagesloaded'
 import PhotoSwipe from 'photoswipe'
 import PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default'
 import 'photoswipe/dist/photoswipe.css'
@@ -39,10 +41,12 @@ albumImgs.forEach((card, index) => {
   })
 })
 
+// Masonry
+
 var content = document.querySelector("#content")
 var masonry = new Masonry(content, {
   percentPosition: true
 })
 imagesLoaded(content, (instance) => {
-  masonry.layout();
+  masonry.layout()
 })

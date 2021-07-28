@@ -43,7 +43,7 @@
               <% end %>
               <li>
                 <%# TODO: Profile page, see issue #22 %>
-                <%= link_to "Profil", "#", class: 'dropdown-item' %>
+                <%= link_to "Profil", current_user, class: 'dropdown-item' %>
               </li>
               <% if !signed_in_via_omniauth? %>
                 <li>

@@ -22,29 +22,6 @@ a .clickable:hover, .clickable:hover {
   }
 }
 
-// Thumbnail
-
-.thumbnail {
-  height: 12rem;
-  object-fit: cover;
-  max-width: 20rem;
-}
-
-.thumbnail-in-post {
-  max-width: 20rem;
-}
-
-@media (max-width: 768px) {
-  .thumbnail {
-    height: 9rem;
-    max-width: 15rem;
-  }
-
-  .thumbnail-in-post {
-    max-width: 100%;
-  }
-}
-
 // Toast
 
 .custom-toast {
@@ -92,17 +69,17 @@ header.overlay {
 // Album cards
 
 .album-card-thumbnail {
-  background: no-repeat center center;
-  background-attachment: scroll;
-  position: relative;
-  background-size: cover;
-  filter: brightness(90%);
+  background-color: $black;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(75%);
+  transition: all 350ms ease-in-out;
+  height: 14rem;
 }
 
 .album-card:hover {
   .album-card-thumbnail {
     filter: brightness(100%);
-    transition: all 200ms;
   }
 }
 
