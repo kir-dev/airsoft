@@ -1,29 +1,18 @@
-<%# Header %>
-<% content_for :header do %>
-  <header class="mb-4 mt-3">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-10 text-center">
-          <h1 class="fs-1">Rólunk</h1>
-          <p class="fs-4">Schönherz Airsoft Team</p>
-        </div>
+<div class="row justify-content-center">
+  <div class="col-lg-10 col-12">
+    <div class="d-flex flex-column flex-md-row mt-4 mb-1">
+      <h1 class="text-center text-md-start flex-grow-1">Schönherz Airsoft Team</h1>
+      <div class="text-center ms-md-4">
+        <%= image_tag image_path('favicon.svg'), style: "height: 10rem" %>
       </div>
     </div>
-  </header>
-<% end %>
-
-<%# Button for admins %>
-<% if admin_signed_in? %>
-<div class="row justify-content-center mb-3">
-  <div class="col-lg-8 col-md-10 col-12">
-    <%= link_to 'Módosítás', edit_post_path(@post), class: "btn btn-primary float-end" %>
-  </div>
-</div>
-<% end %>
-
-<%# Content %>
-<div class="row justify-content-center">
-  <div class="col-lg-8 col-md-10 col-12">
-    <%= @post.formatted_document %>
+    <div class="mt-5">
+      <%= @post.formatted_document %>
+    </div>
+    <% if admin_signed_in? %>
+      <div class="d-flex justify-content-end my-5">
+        <%= link_to 'Módosítás', edit_post_path(@post), class: "btn btn-outline-primary" %>
+      </div>
+    <% end %>
   </div>
 </div>
