@@ -1,6 +1,6 @@
 <%# Javascript import for handling overlay attributes %>
 <% content_for :javascripts do %>
-  <%= javascript_pack_tag 'events', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'post-index', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
 <%# Header with navbar overlay %>
@@ -9,8 +9,16 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 text-center">
-          <h1 class="fs-1">Hírek</h1>
-          <p class="fs-4">Játékainkról és körünkről</p>
+          <div class="ui-slide-in">
+            <div class="text-wrapper d-md-flex">
+              <div class="line fs-2">
+                Schönherz Airsoft Team
+              </div>
+              <div class="line ms-md-4 mt-3 mt-md-0">
+                <%= image_tag image_path('favicon.svg'), class: "thumbnail" %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -22,6 +22,8 @@ a .clickable:hover, .clickable:hover {
   }
 }
 
+// Thumbnail
+
 .thumbnail {
   height: 12rem;
   object-fit: cover;
@@ -43,6 +45,8 @@ a .clickable:hover, .clickable:hover {
   }
 }
 
+// Toast
+
 .custom-toast {
   position: absolute;
   top: 1rem;
@@ -54,50 +58,37 @@ a .clickable:hover, .clickable:hover {
   text-align: center;
 }
 
-.navbar {
-  transition: background-color 500ms ease-in-out;
+// Navbar
+
+.absolute-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
-.transparent-nav {
-  position: relative;
-  font-weight: 300;
-}
+.transparent-navbar {
+  background: transparent !important;
+  background-color: transparent !important;
+  z-index: 2;
 
-@media (min-width: 768px) {
-  .transparent-nav {
-    position: fixed;
-    font-weight: 600;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1030;
-    background: transparent;
-    background-color: transparent !important;
-  }
-
-  .scrolling-nav {
-    background: fixed !important;
-    background-color: $secondary !important;
-    transition: background-color 500ms ease-in-out;
+  > * {
+    z-index: 2;
   }
 }
+
+// Overlay
 
 header.overlay {
   background: no-repeat center center;
   background-color: $body-bg;
   background-attachment: scroll;
-  position: relative;
   background-size: cover;
-  margin-bottom: 50px;
-  padding: 4rem 0 3rem 0;
+  height: 100vh;
   color: $white;
 }
 
-@media (min-width: 768px) {
-  header.overlay {
-    padding: 11rem 0 7rem 0;
-  }
-}
+// Album cards
 
 .album-card-thumbnail {
   background: no-repeat center center;
@@ -122,12 +113,62 @@ header.overlay {
   text-align: center;
 }
 
-.navbar-brand {
-  font-weight: 600;
-}
-
 .album-image-delete {
   position: absolute;
   top: -0.25rem;
   right: -0.25rem;
+}
+
+// UI-slide-in
+.ui-slide-in {
+  width: 100%;
+  background-color: rgba($black, .6);
+  box-shadow: 0 .2rem 1rem rgba($black, .3);
+  color: $white;
+  padding: 1rem;
+  margin-top: 35vh;
+  animation: ui-slide-in-move 1.25s;
+  animation-timing-function: cubic-bezier(.03, .98, .5, 1);
+  transform-origin: left center;
+
+  @media (max-width: 768px) {
+    margin-top: 20vh;
+  }
+
+  .text-wrapper {
+    text-transform: uppercase;
+    overflow: hidden;
+  }
+}
+
+.line {
+  opacity: 0;
+  animation: word-line-slide-out .25s forwards;
+  animation-timing-function: ease-out;
+  @for $i from 1 through 2 {
+    $time: ($i * .25) + .25;
+    &:nth-child(#{$i}n) {
+        animation-delay: #{$time}s;
+    }
+  }
+}
+
+@keyframes ui-slide-in-move {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(100%);
+  }
+}
+
+@keyframes word-line-slide-out {
+  0% {
+      transform: translateX(-10vw);
+      opacity: 0;
+  }
+  100% {
+      transform: translateX(0vw);
+      opacity: 1;
+  }
 }

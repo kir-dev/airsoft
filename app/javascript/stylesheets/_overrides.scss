@@ -1,0 +1,59 @@
+// Mixins
+
+@mixin shadow($width: 4px){
+  border-style: solid;
+  border-width: 0 1px $width 1px;
+}
+
+// Buttons
+
+.btn {
+  @include shadow();
+  text-transform: uppercase;
+
+  &:not(.disabled):hover {
+    margin-top: 1px;
+    border-bottom-width: 3px;
+  }
+
+  &:not(.disabled):active {
+    margin-top: 2px;
+    border-bottom-width: 2px;
+    @include box-shadow(none);
+  }
+
+  @each $color, $value in $theme-colors {
+    &-#{$color} {
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: $value;
+      }
+
+      &,
+      &:not(.disabled):hover,
+      &:not(.disabled):active,
+      &:focus {
+        border-color: shade-color($value, 10%);
+      }
+    }
+  }
+}
+
+[class*="btn-outline"] {
+  border-top-width: 1px;
+}
+
+.btn-group-vertical {
+  .btn + .btn {
+    &:hover {
+      margin-top: -1px;
+      border-top-width: 1px;
+    }
+
+    &:active {
+      margin-top: -1px;
+      border-top-width: 2px;
+    }
+  }
+}
