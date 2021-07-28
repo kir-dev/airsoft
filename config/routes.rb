@@ -23,7 +23,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users do
+    member do
+      post :demote
+      post :promote
+    end
+  end
+
   resources :events
   resources :posts do
     member do
