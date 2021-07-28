@@ -60,30 +60,16 @@
         <%= post.short_description %>
       </div>
       <div class="small text-muted text-end">
-        Közzétéve <%= l post.created_at %>
+        Közzétéve <%= time_ago_in_words post.created_at %>
       </div>
     </div>
   <% end %>
 </div>
-<%# Pagination %>
+
 <div class="row justify-content-center">
-  <div class="col-auto">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+  <div class="col-12 col-lg-10">
+    <div class="my-5 text-end">
+    <%= link_to "Korábbi posztok...", archive_posts_path, class: "btn btn-link fs-5" %>
+    </div>
   </div>
 </div>
