@@ -3,7 +3,6 @@ const dropdown = document.querySelector("#mainNavDropdown")
 
 if (typeof navbar != "undefined" && navbar != null) {
   navbar.classList.add("absolute-nav")
-  navbar.classList.add("transparent-navbar")
   navbar.classList.add("navbar-dark")
   navbar.classList.remove("navbar-light")
 }

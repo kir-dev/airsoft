@@ -65,16 +65,17 @@ a .clickable:hover, .clickable:hover {
   top: 0;
   left: 0;
   right: 0;
-}
-
-.transparent-navbar {
-  background: transparent !important;
-  background-color: transparent !important;
+  background-color: rgba($black, .6) !important;
   z-index: 2;
-
   > * {
     z-index: 2;
   }
+}
+
+.navbar {
+  background-color: transparent;
+  background: transparent;
+  font-weight: 600;
 }
 
 // Overlay
