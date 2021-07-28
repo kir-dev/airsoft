@@ -194,5 +194,6 @@ hu:
       default: "%Y. %b %e., %H:%M"
       long: "%Y. %B %e., %A, %H:%M"
       short: "%b %e., %H:%M"
+      datetime: '%Y. %m. %d. %H:%M'
       albumdate: "%Y.<br />%m.%d."
     pm: du.
