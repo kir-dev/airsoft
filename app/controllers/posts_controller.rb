@@ -2,11 +2,16 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy delete_image]
   # Please note, we're using default_scope with this model's static_id
   # Info: https://guides.rubyonrails.org/active_record_querying.html#applying-a-default-scope
-  before_action :check_admin, except: %i[show index about]
+  before_action :check_admin, except: %i[show index archive about]
 
   # GET /posts
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc).limit(5)
+  end
+
+  # GET /posts/archive
+  def archive
+    @posts = Post.all.order(created_at: :desc)
   end
 
   # GET /posts/1
