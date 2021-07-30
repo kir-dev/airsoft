@@ -24,13 +24,12 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Install rubocop
-        run: bundle install
+      - name: test rubocop
+        run: rubocop -v
 
       - name: Run linters
         uses: wearerequired/lint-action@v1
         with:
           rubocop: true
-          rubocop_dir: /vendor/bundle
           auto_fix: true
           
