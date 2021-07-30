@@ -9,9 +9,7 @@ class AlbumsController < ApplicationController
   end
 
   # GET /albums/1
-  def show
-
-  end
+  def show; end
 
   # GET /albums/new
   def new
