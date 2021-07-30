@@ -22,16 +22,12 @@ jobs:
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.1
-
-      - name: Set up dependencies
-        run: |
-          gem install bundler
-          bundle install
+          bundler-cache: true
 
       - name: Run linters
         uses: wearerequired/lint-action@v1
         with:
           rubocop: true
+          rubocop_command_prefix: bundle exec
           auto_fix: true
           
