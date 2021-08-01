@@ -48,7 +48,10 @@ class EventRegistrationForm extends React.Component {
                     onSubmit={this.onSubmit}
                     formData={JSON.parse(this.props.form_data || '{}')}
                 >
-                    <button className="btn btn-primary" type="submit">Jelentkezés</button>
+                    <div className="d-flex justify-content-between mt-4">
+                        <a className="btn btn-outline-primary" href={this.props.backPath}>Vissza</a>
+                        <button className="btn btn-primary" type="submit">Jelentkezés</button>
+                    </div>
                 </Form>
             </div>
         );
@@ -62,6 +65,7 @@ EventRegistrationForm.propTypes = {
     eventId: PropTypes.number,
     form_data: PropTypes.string,
     method: PropTypes.string,
-    url: PropTypes.string
+    url: PropTypes.string,
+    backPath: PropTypes.string,
 };
 export default EventRegistrationForm

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destroy]
-  before_action :check_admin, only: %i[index]
+  before_action :set_user, only: %i[show edit update destroy promote demote]
+  before_action :check_admin, only: %i[index promote demote]
   before_action :authenticate_user!, except: %i[new create]
 
   # GET /users
@@ -48,6 +48,18 @@ class UsersController < ApplicationController
     redirect_to cancel_user_registration_path
     # @user.destroy
     # redirect_to users_url, notice: "User was successfully destroyed."
+  end
+
+  # POST /users/1/promote
+  def promote
+    @user.admin = true
+    @user.save
+  end
+
+  # POST /users/1/promote
+  def demote
+    @user.admin = false
+    @user.save
   end
 
   private

@@ -1,8 +1,7 @@
-<nav class="navbar navbar-expand-md bg-secondary navbar-dark" id="mainNav">
+<nav class="navbar navbar-expand-md navbar-light py-1 py-md-2" id="mainNav">
   <div class="container">
     <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag image_path('favicon.svg'), size: "32", class: "d-inline-block mr-2" %>
-      AirsoftSCH
+      <%= image_tag image_path('favicon.svg'), size: "45", class: "d-inline-block mr-2" %>
     <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -16,7 +15,7 @@
           <%= link_to 'Naptár', events_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Felszereléseink', items_path, class: 'nav-link' %>
+          <%= link_to 'Felszerelések', items_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
           <%= link_to 'Galéria', albums_path, class: 'nav-link' %>
@@ -24,34 +23,34 @@
         <li class="nav-item">
           <%= link_to 'Rólunk', about_path, class: 'nav-link' %>
         </li>
-        <% if admin_signed_in? %>
-          <li class="nav-item">
-            <%= link_to 'Űrlapok', event_types_path, class: 'nav-link' %>
-          </li>
-        <% end %>
       </ul>
       <ul class="navbar-nav me-right">
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-break text-md-end" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <%= current_user.name.nil? ? current_user.email : current_user.name %>
             </a>
-            <ul aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end">
+            <ul aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end" id="mainNavDropdown">
               <% if admin_signed_in? %>
                 <li>
                   <%# TODO: Admin page, see note on project board %>
                   <%= link_to "Adminisztrátori oldal", "#", class: 'dropdown-item' %>
                 </li>
+                <li>
+                  <%= link_to 'Űrlapok', event_types_path, class: 'dropdown-item' %>
+                </li>
+                <li><hr class="dropdown-divider"></li>
               <% end %>
               <li>
                 <%# TODO: Profile page, see issue #22 %>
-                <%= link_to "Profil", "#", class: 'dropdown-item' %>
+                <%= link_to "Profil", current_user, class: 'dropdown-item' %>
               </li>
               <% if !signed_in_via_omniauth? %>
                 <li>
                   <%= link_to "Felhasználó módosítása", edit_user_path(current_user), class: 'dropdown-item' %>
                 </li>
               <% end %>
+              <li><hr class="dropdown-divider"></li>
               <li>
                 <%= link_to "Kijelentkezés", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
               </li>

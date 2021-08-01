@@ -1,14 +1,14 @@
-<p id="notice"><%= notice %></p>
-
-<p>
+<p class="fs-4 mt-5">
   <strong>Név:</strong>
   <%= @participation.user.name %>
 </p>
 
-<p>
-  <strong>Esemény id:</strong>
-  <%= @participation.event_id %>
+<p class="fs-4">
+  <strong>Esemény:</strong>
+  <%= @participation.event.name %>
 </p>
+
+<hr />
 
 <p>
   <strong>Ürlap válaszok:</strong>
@@ -19,5 +19,7 @@
                       { prerender: true }) %>
 </p>
 
-<%= link_to 'Módosítás', edit_participation_path(@participation) %> |
-<%= link_to 'Vissza', event_path(@participation.event) %>
+<div class="d-flex justify-content-between my-3">
+  <%= link_to 'Vissza', event_path(@participation.event), class: "btn btn-outline-primary" %>
+  <%= link_to 'Módosítás', edit_participation_path(@participation), class: "btn btn-primary" %>
+</div>

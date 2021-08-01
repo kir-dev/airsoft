@@ -1,42 +1,35 @@
-<div class="card mt-2">
-  <div class="card-header bg-primary d-md-flex">
+<div class="row justify-content-center mb-3">
+  <div class="col-12 col-md-5 col-lg-4">
     <% if @post.image.attached? %>
-      <%= image_tag @post.image, class: "thumbnail-in-post" %>
+      <%= image_tag @post.image, class: "w-100" %>
     <% else %>
-      <%= image_tag image_path('default-post-thumbnail.jpg'), class: "thumbnail-in-post" %>
+      <%= image_tag image_path('default-post-thumbnail.jpg'), class: "w-100" %>
     <% end %>
-    <div class="ms-md-3 mt-2">
-      <h1 class="text-white" style="font-weight: bolder">
-        <%= @post.title %>
-      </h1>
-      <p class="text-muted">Közzétéve <%= l @post.created_at %></p>
-    </div>
   </div>
-  <div class="card-body">
-    <% if @post.short_description.present? %>
-      <div>
-        <%= @post.short_description %>
-        <hr>
-      </div>
-    <% end %>
+  <div class="col-12 col-md-7 col-lg-8 d-flex flex-column text-decoration-none">
+    <h2>
+      <%= @post.title %>
+    </h2>
+    <p class="text-muted">
+      Közzétéve <%= time_ago_in_words @post.created_at %>
+    </p>
+  </div>
+</div>
 
-    <div>
-      <%= @post.formatted_document %>
-    </div>
+<div class="py-5">
+  <div>
+    <%= @post.formatted_document %>
   </div>
-  <div class="card-footer bg-primary">
-    <div class="button-collection">
-      <div class="d-flex flex-wrap">
-        <div class="d-flex mt-1">
-          <%= link_to 'Vissza', posts_path, class: "btn btn-success h-min" %>
-        </div>
-        <% if admin_signed_in? %>
-          <div class="d-flex flex-grow-1 mt-1 justify-content-end">
-            <%= link_to 'Szerkesztés', edit_post_path(@post), class: "btn btn-success" %>
-            <%= link_to 'Törlés', @post, class: "btn btn-danger ms-2", method: :delete, data: { confirm: "Biztosan törlöd az posztot?" } %>
-          </div>
-        <% end %>
-      </div>
-    </div>
+</div>
+
+<div class="d-flex flex-wrap">
+  <div class="d-flex mt-1">
+    <%= link_to 'Vissza', posts_path, class: "btn btn-outline-primary" %>
   </div>
+  <% if admin_signed_in? %>
+    <div class="d-flex flex-grow-1 mt-1 justify-content-end">
+      <%= link_to 'Szerkesztés', edit_post_path(@post), class: "btn btn-primary" %>
+      <%= link_to 'Törlés', @post, class: "btn btn-danger ms-2", method: :delete, data: { confirm: "Biztosan törlöd a posztot?" } %>
+    </div>
+  <% end %>
 </div>

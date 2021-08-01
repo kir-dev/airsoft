@@ -24,11 +24,7 @@ a .clickable:hover, .clickable:hover {
 
 .thumbnail {
   height: 12rem;
-  object-fit: cover;
-  max-width: 20rem;
-}
-
-.thumbnail-in-post {
+  object-position: center;
   max-width: 20rem;
 }
 
@@ -37,11 +33,9 @@ a .clickable:hover, .clickable:hover {
     height: 9rem;
     max-width: 15rem;
   }
-
-  .thumbnail-in-post {
-    max-width: 100%;
-  }
 }
+
+// Toast
 
 .custom-toast {
   position: absolute;
@@ -54,63 +48,51 @@ a .clickable:hover, .clickable:hover {
   text-align: center;
 }
 
+// Navbar
+
+.absolute-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba($black, .6) !important;
+  z-index: 2;
+  > * {
+    z-index: 2;
+  }
+}
+
 .navbar {
-  transition: background-color 500ms ease-in-out;
+  background-color: transparent;
+  background: transparent;
+  font-weight: 600;
 }
 
-.transparent-nav {
-  position: relative;
-  font-weight: 300;
-}
-
-@media (min-width: 768px) {
-  .transparent-nav {
-    position: fixed;
-    font-weight: 600;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1030;
-    background: transparent;
-    background-color: transparent !important;
-  }
-
-  .scrolling-nav {
-    background: fixed !important;
-    background-color: $secondary !important;
-    transition: background-color 500ms ease-in-out;
-  }
-}
+// Overlay
 
 header.overlay {
   background: no-repeat center center;
   background-color: $body-bg;
   background-attachment: scroll;
-  position: relative;
   background-size: cover;
-  margin-bottom: 50px;
-  padding: 4rem 0 3rem 0;
+  height: 100vh;
   color: $white;
 }
 
-@media (min-width: 768px) {
-  header.overlay {
-    padding: 11rem 0 7rem 0;
-  }
-}
+// Album cards
 
 .album-card-thumbnail {
-  background: no-repeat center center;
-  background-attachment: scroll;
-  position: relative;
-  background-size: cover;
-  filter: brightness(90%);
+  background-color: $black;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(75%);
+  transition: all 350ms ease-in-out;
+  height: 14rem;
 }
 
 .album-card:hover {
   .album-card-thumbnail {
     filter: brightness(100%);
-    transition: all 200ms;
   }
 }
 
@@ -122,12 +104,63 @@ header.overlay {
   text-align: center;
 }
 
-.navbar-brand {
-  font-weight: 600;
-}
-
 .album-image-delete {
   position: absolute;
   top: -0.25rem;
   right: -0.25rem;
+}
+
+// UI-slide-in
+
+.ui-slide-in {
+  width: 100%;
+  background-color: rgba($black, .6);
+  box-shadow: 0 .2rem 1rem rgba($black, .3);
+  color: $white;
+  padding: 1rem;
+  margin-top: 35vh;
+  animation: ui-slide-in-move 1.25s;
+  animation-timing-function: cubic-bezier(.03, .98, .5, 1);
+  transform-origin: left center;
+
+  @media (max-width: 768px) {
+    margin-top: 20vh;
+  }
+
+  .text-wrapper {
+    text-transform: uppercase;
+    overflow: hidden;
+  }
+}
+
+.line {
+  opacity: 0;
+  animation: word-line-slide-out .25s forwards;
+  animation-timing-function: ease-out;
+  @for $i from 1 through 2 {
+    $time: ($i * .25) + .25;
+    &:nth-child(#{$i}n) {
+        animation-delay: #{$time}s;
+    }
+  }
+}
+
+@keyframes ui-slide-in-move {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(100%);
+  }
+}
+
+@keyframes word-line-slide-out {
+  0% {
+      transform: translateX(-10vw);
+      opacity: 0;
+  }
+  100% {
+      transform: translateX(0vw);
+      opacity: 1;
+  }
 }

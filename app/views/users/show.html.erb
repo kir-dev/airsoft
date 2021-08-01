@@ -1,24 +1,24 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
+<p class="fs-5 mt-4 mb-2">
+  <strong>Név:</strong>
   <%= @user.name %>
 </p>
 
-<p>
-  <strong>Email:</strong>
+<p class="fs-5 my-2">
+  <strong>E-mail:</strong>
   <%= @user.email %>
 </p>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
-
-<p>
+<p class="fs-5 my-2">
   <strong>Admin:</strong>
   <%= @user.admin %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<p class="fs-5 my-2">
+  <strong>Provider:</strong>
+  <%= @user.provider %>
+</p>
+
+<div class="d-flex justify-content-between my-5">
+  <%= link_to 'Vissza', users_path, class: "btn btn-outline-primary" %>
+  <%= link_to 'Módosítás', edit_user_path(@user), class: "btn btn-primary" %>
+</div>
