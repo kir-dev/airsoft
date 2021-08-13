@@ -1248,10 +1248,10 @@
     lodash "^4.17.20"
     lodash-es "^4.17.20"
 
-"@rjsf/bootstrap-4@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@rjsf/bootstrap-4/-/bootstrap-4-3.0.0.tgz#cf8034437d0c1cd1ca27c1eef31fafae89c27d7d"
-  integrity sha512-bYYEunOfL4cZcNBkJ5CoE1dtgTR8I2D8uFShDjRr5x5t/0jnRWgzv+b89dmGSzGeUziKKrRgEDHxDxOlaCpeCw==
+"@rjsf/bootstrap-4@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@rjsf/bootstrap-4/-/bootstrap-4-3.1.0.tgz#5c70197c6d07f14246148b7d273adac86d4b11db"
+  integrity sha512-m3LutQx4912LkBBai8Y0gy3Lqgk/xTBjFJ6quX8JFCZjz57MJTVcix3u7LUC835k4EidDVG0GSmuqU0prnTlWQ==
   dependencies:
     react-icons "^3.10.0"
 
