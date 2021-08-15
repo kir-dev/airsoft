@@ -30,7 +30,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :events
+  resources :events do
+    collection do
+      get :list
+    end
+  end
+
   resources :posts do
     member do
       delete :delete_image

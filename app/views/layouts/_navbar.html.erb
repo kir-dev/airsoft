@@ -32,16 +32,16 @@
             </a>
             <ul aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end" id="mainNavDropdown">
               <li>
-                <%= link_to "Események", "#", class: 'dropdown-item' %>
+                <%= link_to "Események", list_events_path, class: 'dropdown-item' %>
               </li>
               <li>
-                <%= link_to "Űrlapok", "#", method: :delete, class: 'dropdown-item' %>
+                <%= link_to "Űrlapok", event_types_path, class: 'dropdown-item' %>
               </li>
               <li>
-                <%= link_to "Bejegyzések", "#", method: :delete, class: 'dropdown-item' %>
+                <%= link_to "Bejegyzések", "#", class: 'dropdown-item' %>
               </li>
               <li>
-                <%= link_to "Felhasználók", "#", method: :delete, class: 'dropdown-item' %>
+                <%= link_to "Felhasználók", users_path, class: 'dropdown-item' %>
               </li>
             </ul>
           </li>

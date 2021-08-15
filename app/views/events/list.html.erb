@@ -1,0 +1,42 @@
+<h1 class="my-5">Események</h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Név</th>
+    <th>Kezdete</th>
+    <th>Vége</th>
+    <th>Jelntkező űrlap</th>
+    <th>Jelntkezők</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= link_to event.name, event %></td>
+      <td><%= event.start %></td>
+      <td><%= event.end %>
+      <td>
+        <% if event.event_type %>
+          <%= link_to event.event_type.name, event.event_type %>
+        <% else %>
+          -
+        <% end %>
+      </td>
+      <td>
+        <% if event.event_type %>
+          <% if event.participants.empty? %>
+            Még nincs jelentkező
+          <% else %>
+            <%= link_to "#{event.participants.count} db jelentkező", event_registrations_path(event)  %>
+          <% end %>
+        <% else %>
+          -
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -2,6 +2,11 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
   before_action :check_admin, except: %i[show index]
 
+  # GET /events/list
+  def list
+    @events = Event.all
+  end
+
   # GET /events or /events.json
   def index
     @events = Event.all
