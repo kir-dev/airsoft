@@ -4,7 +4,6 @@ class PostsController < ApplicationController
   # Info: https://guides.rubyonrails.org/active_record_querying.html#applying-a-default-scope
   before_action :check_admin, except: %i[show index archive about]
 
-
   # GET /posts/list
   def list
     @posts = Post.all
