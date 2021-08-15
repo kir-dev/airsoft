@@ -54,12 +54,14 @@ class UsersController < ApplicationController
   def promote
     @user.admin = true
     @user.save
+    redirect_to users_path
   end
 
   # POST /users/1/promote
   def demote
     @user.admin = false
     @user.save
+    redirect_to users_path
   end
 
   private
