@@ -23,6 +23,29 @@
         <li class="nav-item">
           <%= link_to 'Rólunk', about_path, class: 'nav-link' %>
         </li>
+        <% if admin_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-muted" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+              </svg>
+            </a>
+            <ul aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end" id="mainNavDropdown">
+              <li>
+                <%= link_to "Események", "#", class: 'dropdown-item' %>
+              </li>
+              <li>
+                <%= link_to "Űrlapok", "#", method: :delete, class: 'dropdown-item' %>
+              </li>
+              <li>
+                <%= link_to "Bejegyzések", "#", method: :delete, class: 'dropdown-item' %>
+              </li>
+              <li>
+                <%= link_to "Felhasználók", "#", method: :delete, class: 'dropdown-item' %>
+              </li>
+            </ul>
+          </li>
+        <% end %>
       </ul>
       <ul class="navbar-nav me-right">
         <% if user_signed_in? %>
@@ -31,26 +54,13 @@
               <%= current_user.name.nil? ? current_user.email : current_user.name %>
             </a>
             <ul aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end" id="mainNavDropdown">
-              <% if admin_signed_in? %>
-                <li>
-                  <%# TODO: Admin page, see note on project board %>
-                  <%= link_to "Adminisztrátori oldal", "#", class: 'dropdown-item' %>
-                </li>
-                <li>
-                  <%= link_to 'Űrlapok', event_types_path, class: 'dropdown-item' %>
-                </li>
-                <li><hr class="dropdown-divider"></li>
-              <% end %>
               <li>
                 <%# TODO: Profile page, see issue #22 %>
                 <%= link_to "Profil", current_user, class: 'dropdown-item' %>
               </li>
-              <% if !signed_in_via_omniauth? %>
-                <li>
-                  <%= link_to "Felhasználó módosítása", edit_user_path(current_user), class: 'dropdown-item' %>
-                </li>
-              <% end %>
-              <li><hr class="dropdown-divider"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <li>
                 <%= link_to "Kijelentkezés", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
               </li>
