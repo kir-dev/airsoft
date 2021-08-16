@@ -30,7 +30,7 @@ class ParticipationsController < ApplicationController
   # GET /events/1/register
   def new
     event         = Event.find(params[:event_id])
-    participation = event&.participations.where(user: current_user).first
+    participation = event&.participations&.where(user: current_user)&.first
 
     if event.event_type.nil?
       redirect_to event_path(event), notice: 'Ehhez az eseményhez nincs jelentkező űrlap!'
