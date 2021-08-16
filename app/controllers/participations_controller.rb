@@ -29,11 +29,13 @@ class ParticipationsController < ApplicationController
 
   # GET /events/1/register
   def new
-    event = Event.find(params[:event_id])
+    event         = Event.find(params[:event_id])
+    participation = event&.participations.where(user: current_user).first
+
     if event.event_type.nil?
-      redirect_to event_path(event), notice: 'Ehhez az eseményhez nincs jelentkező űrlap'
-    elsif event.participations.exists?(user: current_user)
-      redirect_to event_path(event), notice: 'Erre az eseményre már regisztráltál'
+      redirect_to event_path(event), notice: 'Ehhez az eseményhez nincs jelentkező űrlap!'
+    elsif participation.present?
+      redirect_to participation, notice: 'Erre az eseményre már regisztráltál!'
     else
       @event_type    = event.event_type
       @participation = Participation.new(event: event)
