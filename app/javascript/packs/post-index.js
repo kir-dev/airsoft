@@ -1,5 +1,5 @@
 const navbar = document.querySelector("#mainNav")
-const dropdown = document.querySelector("#mainNavDropdown")
+const dropdowns = document.querySelectorAll("#mainNavDropdown")
 
 if (typeof navbar != "undefined" && navbar != null) {
   navbar.classList.add("absolute-nav")
@@ -7,6 +7,6 @@ if (typeof navbar != "undefined" && navbar != null) {
   navbar.classList.remove("navbar-light")
 }
 
-if (typeof dropdown != "undefined" && dropdown != null) {
-  dropdown.classList.add("dropdown-menu-dark")
+if (typeof dropdowns != "undefined" && dropdowns != []) {
+  dropdowns.forEach(d => d.classList.add("dropdown-menu-dark"))
 }
