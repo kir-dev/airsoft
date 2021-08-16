@@ -7,6 +7,6 @@ if (typeof navbar != "undefined" && navbar != null) {
   navbar.classList.remove("navbar-light")
 }
 
-if (typeof navbar != "undefined" && navbar != null) {
+if (typeof dropdown != "undefined" && dropdown != null) {
   dropdown.classList.add("dropdown-menu-dark")
 }
