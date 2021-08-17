@@ -23,9 +23,11 @@
         <li class="nav-item">
           <%= link_to 'Rólunk', about_path, class: 'nav-link' %>
         </li>
+      </ul>
+      <ul class="navbar-nav me-right">
         <% if admin_signed_in? %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-muted" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Adminisztrátori opciók" aria-label="Adminisztrátori opciók">
               <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
               </svg>
@@ -46,8 +48,6 @@
             </ul>
           </li>
         <% end %>
-      </ul>
-      <ul class="navbar-nav me-right">
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-break text-md-end" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
