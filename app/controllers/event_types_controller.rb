@@ -7,9 +7,6 @@ class EventTypesController < ApplicationController
     @event_types = EventType.all
   end
 
-
-
-  
   # GET /event_types/1
   def show; end
 
