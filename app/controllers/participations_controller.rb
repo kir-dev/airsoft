@@ -36,6 +36,8 @@ class ParticipationsController < ApplicationController
       redirect_to event_path(event), notice: 'Ehhez az eseményhez nincs jelentkező űrlap!'
     elsif participation.present?
       redirect_to participation, notice: 'Erre az eseményre már regisztráltál!'
+    elsif event.deadline.utc <= Time.now.utc
+      redirect_to event_path(event), notice: 'Lejárt a jelentkezési határidő'
     else
       @event_type    = event.event_type
       @participation = Participation.new(event: event)
@@ -71,7 +73,7 @@ class ParticipationsController < ApplicationController
   # DELETE /participations/1
   def destroy
     @participation.destroy
-    redirect_to participations_url, notice: 'Participation was successfully destroyed.'
+    redirect_to event_registrations_path(@participation.event), notice: 'Participation was successfully destroyed.'
   end
 
   private

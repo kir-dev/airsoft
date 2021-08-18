@@ -20,13 +20,21 @@
     </div>
   </div>
 
-  <div class="mb-5">
+  <div class="mb-2">
     <%= form.label :event_type_id, "Jelentkező űrlap", class: "form-label" %>
     <%= form.select :event_type_id,
       EventType.pluck(:name, :id),
       { include_blank: "Nincs jelentkezés!" },
       class: "form-select"
     %>
+  </div>
+
+  <div class="mb-5 align-items-center">
+    <%= form.label :deadline, class: "form-label" %>
+    <div class="form-control">
+      <%= form.datetime_select :deadline, {}, class: "" %>
+    </div>
+    <div id="deadlineHelp" class="form-text">A jelentkezési határidő beállításának csak akkor van hatása, ha van beállítva jelentkező űrlap az eseményhez.</div>
   </div>
 
   <div class="mb-2">

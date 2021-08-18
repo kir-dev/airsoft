@@ -3,6 +3,7 @@
 # Table name: events
 #
 #  id            :bigint           not null, primary key
+#  deadline      :datetime
 #  end           :datetime
 #  name          :string
 #  start         :datetime
@@ -16,4 +17,13 @@ class Event < ApplicationRecord
   has_many :users, through: :participations
   has_rich_text :description
   alias participants users
+
+  def can_participate?(user)
+    event_type.present? && Time.now.utc < deadline.utc
+  end
+
+  def already_participating?(user)
+    participants.include?(user)
+  end
+
 end
