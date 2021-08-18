@@ -21,5 +21,4 @@ class Event < ApplicationRecord
   def can_participate?
     event_type.present? && Time.now.utc < deadline.utc
   end
-
 end
