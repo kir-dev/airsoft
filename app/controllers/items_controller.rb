@@ -64,5 +64,4 @@ class ItemsController < ApplicationController
                          short_description: '[Nem szükséges kitölteni]'
     redirect_to edit_post_url(@post)
   end
-
 end
