@@ -22,5 +22,5 @@
 #
 class Rent < ApplicationRecord
   belongs_to :user
-  enum status: { pendin: 0, accepted: 1, rented: 2, closed: 3 }
+  enum status: { pending: 0, accepted: 1, rented: 2, closed: 3 }
 end

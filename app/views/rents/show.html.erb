@@ -1,19 +1,42 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>End date:</strong>
-  <%= @rent.end_date %>
+  <strong>Bérlő:</strong>
+  <%= @rent.user.name %>
 </p>
 
 <p>
-  <strong>Item:</strong>
-  <%= @rent.item_id %>
+  <strong>Bérlő e-mail címe:</strong>
+  <%= @rent.user.email %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @rent.user_id %>
+  <strong>Bérlési időszak kezdete:</strong>
+  <%= l @rent.start_date %>
 </p>
 
-<%= link_to 'Edit', edit_rent_path(@rent) %> |
-<%= link_to 'Back', rents_path %>
+<p>
+  <strong>Bérlési időszak vége:</strong>
+  <%= l @rent.end_date %>
+</p>
+
+<p>
+  <strong>Igénylet felszerelés(ek):</strong>
+  <%= @rent.order %>
+</p>
+
+<p>
+  <strong>Megjegyzés:</strong>
+  <%= @rent.comment %>
+</p>
+
+<p>
+  <strong>Bérlés státusza: </strong>
+  <%= @rent.status %>
+</p>
+
+
+<div class="my-4 d-flex justify-content-between">
+  <%= link_to 'Vissza', items_path, class: "btn btn-outline-primary" %>
+  <% if admin_signed_in? %>
+    <%= link_to 'Módosítás', edit_rent_path(@rent), class: "btn btn-primary" %>
+  <% end %>
+</div>
