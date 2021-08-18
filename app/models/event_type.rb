@@ -10,5 +10,5 @@
 #  updated_at :datetime         not null
 #
 class EventType < ApplicationRecord
-  has_many :events
+  has_many :events, dependent: :nullify
 end

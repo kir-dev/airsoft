@@ -9,7 +9,7 @@
 #  updated_at  :datetime         not null
 #
 class Item < ApplicationRecord
-  has_many :rents
-  has_many :users, through: :rents
+  has_many :rents, dependent: :destroy
+  has_many :users, through: :rents, dependent: :nullify
   alias renters users
 end
