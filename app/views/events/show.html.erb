@@ -17,7 +17,7 @@
   </div>
   <% if @event.can_participate?%>
     <div class="text-end mb-1">
-      <%= link_to (@event.already_participating?(current_user) ? 'Jelentkezésem megtekintése' : 'Jelentkezek!'), register_to_event_path(@event), class: "btn btn-primary" %>
+      <%= link_to  'Jelentkezek!', register_to_event_path(@event), class: "btn btn-primary" %>
     </div>
   <% end %>
   <% if admin_signed_in? && @event.event_type %>

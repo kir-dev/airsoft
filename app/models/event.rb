@@ -22,7 +22,4 @@ class Event < ApplicationRecord
     event_type.present? && Time.now.utc < deadline.utc
   end
 
-  def already_participating?(user)
-    participants.include?(user)
-  end
 end
