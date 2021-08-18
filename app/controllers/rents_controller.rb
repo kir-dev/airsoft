@@ -1,6 +1,6 @@
 class RentsController < ApplicationController
   before_action :set_rent, only: %i[show edit update destroy]
-  before_action :check_admin, except: %i[show index]
+  before_action :check_admin, except: %i[show new create]
 
   # GET /rents
   def index

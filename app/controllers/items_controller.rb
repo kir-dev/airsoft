@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[show edit update destroy]
   before_action :check_admin, except: %i[show index]
+  before_action :set_description_post, only: %i[index]
 
   # GET /items
   def index
@@ -55,4 +56,13 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :description)
   end
+
+  def set_description_post
+    @post = Post.unscoped.find_by! static_id: :rent
+  rescue ActiveRecord::RecordNotFound
+    @post = Post.create! static_id: :rent, title: 'Eszközbérlés oldal tartalma',
+                         short_description: '[Nem szükséges kitölteni]'
+    redirect_to edit_post_url(@post)
+  end
+
 end
