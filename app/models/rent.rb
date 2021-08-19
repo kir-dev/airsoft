@@ -29,5 +29,4 @@ class Rent < ApplicationRecord
   def compact_order
     order.truncate(30)
   end
-
 end
