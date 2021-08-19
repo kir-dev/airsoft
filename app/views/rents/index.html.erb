@@ -1,10 +1,13 @@
 <h1 class="my-5">Eszköz bérlések</h1>
 
+
+
+
 <div class="row">
 
-  <%= render 'column', rents: @rents.pending, status: t(:pending) %>
-  <%= render 'column', rents: @rents.accepted, status: t(:accepted) %>
-  <%= render 'column', rents: @rents.rented, status: t(:rented) %>
+  <%= render 'column', rents: @rents.pending, status: :pending %>
+  <%= render 'column', rents: @rents.accepted, status: :accepted %>
+  <%= render 'column', rents: @rents.rented, status: :rented %>
 
 
 </div>

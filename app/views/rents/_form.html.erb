@@ -28,7 +28,7 @@
   <% if admin_signed_in?%>
     <div class="mb-5">
       <%= form.label :status, class: "form-label" %>
-      <%= form.select :status, options_for_select(Rent.statuses.map {|k,v| [t(k), k]}), class: "form-select"
+      <%= form.select :status, Rent.statuses.map {|k,v| [t(k), k]}, class: "form-select"
       %>
     </div>
   <% end %>
