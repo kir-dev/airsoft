@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[show edit update destroy]
-  before_action :check_admin, except: %i[show index]
+  before_action :check_admin, except: %i[index]
   before_action :set_description_post, only: %i[index]
 
   # GET /items

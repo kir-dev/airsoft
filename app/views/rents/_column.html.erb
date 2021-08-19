@@ -1,0 +1,20 @@
+<div class="col-lg-4 col-12">
+  <div class="card">
+    <h5 class="card-header"><%= status %></h5>
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <% rents.each do |rent| %>
+          <li class="list-group-item">
+            <%= link_to rent.user.name, rent %> <br>
+            <%= l rent.start_date %> <br>
+            <%= rent.compact_order %>
+
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="card-footer text-muted">
+      <%= rents.count %> db bérlés
+    </div>
+  </div>
+</div>

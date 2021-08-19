@@ -1,11 +1,16 @@
 class RentsController < ApplicationController
   before_action :set_rent, only: %i[show edit update destroy]
-  before_action :check_admin, except: %i[show new create]
   before_action :login_required
+  before_action :check_admin, except: %i[show new create]
 
   # GET /rents
   def index
-    @rents = Rent.all
+    @rents = Rent.not_closed
+  end
+
+  # Get /rents/closed
+  def closed
+    @rents = Rent.closed
   end
 
   # GET /rents/1
@@ -21,9 +26,9 @@ class RentsController < ApplicationController
 
   # POST /rents
   def create
-    @rent = Rent.new(rent_params)
-    @rent.user = current_user
-    @rent.status = :pending
+    @rent        = Rent.new(rent_params)
+    @rent.user   = current_user
+    @rent.status = :pending unless current_user.admin?
 
     if @rent.save
       redirect_to @rent, notice: 'Rent was successfully created.'

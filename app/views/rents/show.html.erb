@@ -1,3 +1,8 @@
+<%
+  classes = { pending: "text-secondary", accepted: "text-primary", rented: "text-info", closed: "text-danger" }
+  status_class = classes[@rent.status.to_sym]
+%>
+
 <p>
   <strong>Bérlő:</strong>
   <%= @rent.user.name %>
@@ -30,13 +35,15 @@
 
 <p>
   <strong>Bérlés státusza: </strong>
-  <%= @rent.status %>
+  <span class="<%= status_class %>"><%= t @rent.status %></span>
 </p>
 
 
 <div class="my-4 d-flex justify-content-between">
-  <%= link_to 'Vissza', items_path, class: "btn btn-outline-primary" %>
   <% if admin_signed_in? %>
+    <%= link_to 'Vissza', rents_path, class: "btn btn-outline-primary" %>
     <%= link_to 'Módosítás', edit_rent_path(@rent), class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to 'Vissza', items_path, class: "btn btn-outline-primary" %>
   <% end %>
 </div>

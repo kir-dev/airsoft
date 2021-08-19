@@ -6,13 +6,19 @@ Rails.application.routes.draw do
       post :add_image
     end
   end
-  
+
   resources :participations, except: [:new, :index]
   get 'events/:event_id/register', to: 'participations#new', as: 'register_to_event'
   get 'events/:event_id/registrations', to: 'participations#index', as: 'event_registrations'
 
-  resources :rents
+  resources :rents do
+    collection do
+      get :closed
+    end
+  end
+
   resources :items
+
   devise_for :users, controllers: {
     omniauth_callbacks: "omniauth_callbacks"
   }

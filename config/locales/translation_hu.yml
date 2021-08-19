@@ -103,3 +103,9 @@ hu:
         reset_password_token: Jelszó token visszaállítása  #g
         uid: Uid  #g
 
+  pending: Felvéve
+  accepted: Elfogadva
+  rented: Kiadva
+  closed: Lezárva
+
+

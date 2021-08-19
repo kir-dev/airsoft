@@ -23,4 +23,11 @@
 class Rent < ApplicationRecord
   belongs_to :user
   enum status: { pending: 0, accepted: 1, rented: 2, closed: 3 }
+
+  validates :order, presence: true
+
+  def compact_order
+    order.truncate(30)
+  end
+
 end
