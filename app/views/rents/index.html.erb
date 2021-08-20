@@ -1,20 +1,17 @@
 <h1 class="my-5">Eszköz bérlések</h1>
 
-
-
-
 <div class="row">
 
   <%= render 'column', rents: @rents.pending, status: :pending %>
   <%= render 'column', rents: @rents.accepted, status: :accepted %>
   <%= render 'column', rents: @rents.rented, status: :rented %>
 
-
 </div>
+
 <div class="row justify-content-center">
-  <div class="col-12 col-lg-10">
+  <div class="col-12">
     <div class="my-5 text-end">
-      <%= link_to 'Lezárt bérlések', closed_rents_path, class: "link-primary" %>
+      <%= link_to 'Lezárt bérlések', closed_rents_path, class: "btn btn-link" %>
     </div>
   </div>
 </div>
