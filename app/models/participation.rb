@@ -29,5 +29,4 @@ class Participation < ApplicationRecord
   def can_edit?(user)
     event.can_participate? && (event.participants.include?(user) || user.admin?)
   end
-
 end

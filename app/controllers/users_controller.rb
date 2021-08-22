@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1/force_update (Admin edit)
   def force_update
     if @user.update(user_params)
-      redirect_to @user, notice: "User was successfully updated."
+      redirect_to @user, notice: 'User was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -57,10 +57,9 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-
     if user_signed_in? && current_user.admin?
       @user.destroy
-      redirect_to users_url, notice: "User was successfully destroyed."
+      redirect_to users_url, notice: 'User was successfully destroyed.'
     else
       redirect_to cancel_user_registration_path
     end
