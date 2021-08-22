@@ -43,11 +43,15 @@ class UsersController < ApplicationController
     # end
   end
 
-  # DELETE /users/1 --- Managed by Devise
+  # DELETE /users/1
   def destroy
-    redirect_to cancel_user_registration_path
-    # @user.destroy
-    # redirect_to users_url, notice: "User was successfully destroyed."
+
+    if user_signed_in? && current_user.admin?
+      @user.destroy
+      redirect_to users_url, notice: "User was successfully destroyed."
+    else
+      redirect_to cancel_user_registration_path
+    end
   end
 
   # POST /users/1/promote
