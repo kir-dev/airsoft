@@ -32,12 +32,14 @@ class User < ApplicationRecord
   has_many :events, through: :participations
   alias rentals items
   alias participated_events events
+  attribute :admin, default: false
+  validates :name, presence: true, length: { minimum: 3 }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
 
-      data = auth.extra.raw_info
+      data          = auth.extra.raw_info
       user.uid      = data.internal_id
       user.email    = data.mail
       user.name     = data.displayName

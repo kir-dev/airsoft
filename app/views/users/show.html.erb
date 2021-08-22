@@ -25,7 +25,11 @@
               <strong>Admin: </strong><%= @user.admin %>
             </p>
           <% end %>
-          <%= link_to 'Módosítás', edit_user_path(@user), class: "btn btn-primary" %>
+          <% if admin_signed_in? %>
+            <%= link_to 'Módosítás', force_edit_user_path(@user), class: "btn btn-primary" %>
+          <% else %>
+            <%= link_to 'Módosítás', edit_user_path(@user), class: "btn btn-primary" %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -47,33 +51,33 @@
           </tr>
           </thead>
           <tbody>
-          <% if @user.participations.empty?%>
+          <% if @user.participations.empty? %>
             <tr>
               <td colspan="3"> Még nem regisztráltál egy eseményre sem!</td>
             </tr>
           <% end %>
           <% @user.participations.each do |p| %>
-          <tr>
-            <td><%= link_to p.event.name, p.event %></td>
-            <td><%= l p.event.start %></td>
-            <td>
-              <div class="btn-group" role="group" aria-label="Műveletek">
-                <%= link_to p, class: "btn btn-outline-primary btn-sm", title: "Megtekintés" do %>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                  </svg>
-                <% end %>
-                <% if p.can_edit?(current_user) %>
-                  <%= link_to edit_participation_path(p), class: "btn btn-outline-primary btn-sm", title: "Módosítás" do %>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+            <tr>
+              <td><%= link_to p.event.name, p.event %></td>
+              <td><%= l p.event.start %></td>
+              <td>
+                <div class="btn-group" role="group" aria-label="Műveletek">
+                  <%= link_to p, class: "btn btn-outline-primary btn-sm", title: "Megtekintés" do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                     </svg>
                   <% end %>
-                <% end %>
-              </div>
-            </td>
-          </tr>
+                  <% if p.can_edit?(current_user) %>
+                    <%= link_to edit_participation_path(p), class: "btn btn-outline-primary btn-sm", title: "Módosítás" do %>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                      </svg>
+                    <% end %>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
           <% end %>
           </tbody>
         </table>
@@ -101,7 +105,7 @@
           </tr>
           </thead>
           <tbody>
-          <% if @user.rents.empty?%>
+          <% if @user.rents.empty? %>
             <tr>
               <td colspan="4"> Még nem béreltél egy eszközt sem!</td>
             </tr>
