@@ -3,6 +3,7 @@
 # Table name: events
 #
 #  id            :bigint           not null, primary key
+#  deadline      :datetime
 #  end           :datetime
 #  name          :string
 #  start         :datetime

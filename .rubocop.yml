@@ -1,4 +1,3 @@
-inherit_from: .rubocop_todo.yml
 # Include rails specific cops
 require: rubocop-rails
 # Global settings for all cops

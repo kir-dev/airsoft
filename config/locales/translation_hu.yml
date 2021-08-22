@@ -50,6 +50,7 @@ hu:
       event:
         start: Esemény kezdete
         end: Esemény vége
+        deadline: Jelentkezési határidő
         event_type: :activerecord.models.event_type  #g
         description: Leírás  #g
         participations: Részvételek  #g

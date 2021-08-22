@@ -25,9 +25,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:authsch]
-  has_many :rents
+
+  has_many :rents, dependent: :destroy
   has_many :items, through: :rents
-  has_many :participations
+  has_many :participations, dependent: :destroy
   has_many :events, through: :participations
   alias rentals items
   alias participated_events events
