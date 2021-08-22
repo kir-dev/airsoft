@@ -25,4 +25,9 @@ class Participation < ApplicationRecord
   belongs_to :event
 
   scope :for_event, ->(event_id) { where(event_id: event_id) }
+
+  def can_edit?(user)
+    event.can_participate? && (event.participants.include?(user) || user.admin?)
+  end
+
 end
