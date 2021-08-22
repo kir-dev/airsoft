@@ -1,6 +1,3 @@
-<h1>Editing Rent</h1>
+<h1 class="text-center my-4">Eszköz kérelem módosítása</h1>
 
-<%= render 'form', rent: @rent %>
-
-<%= link_to 'Show', @rent %> |
-<%= link_to 'Back', rents_path %>
+<%= render 'form', rent: @rent,  back_path: @rent %>

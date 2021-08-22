@@ -10,7 +10,7 @@ hu:
       item: Tétel  #g
       participation: Részvétel  #g
       post: Poszt  #g
-      rent: Bérlés  #g
+      rent: Eszköz igény #g
       user: Felhasználó  #g
 
     attributes:
@@ -55,6 +55,8 @@ hu:
         description: Leírás  #g
         participations: Részvételek  #g
         users: Felhasználók  #g
+        deadline: Jelentkezési határidő
+        name: Esemény neve
 
       event_type:
         events: Események  #g
@@ -79,9 +81,12 @@ hu:
         image: Indexkép (opc.)
 
       rent:
-        end_date: Befejezés dátuma  #g
-        item: :activerecord.models.item  #g
+        end_date: Visszavitel dátuma  #g
+        start_date: Átvétel dátuma
+        comment: Megjegyzés
+        order: Bérelt eszköz(ök)
         user: :activerecord.models.user  #g
+        status: Státusz
 
       user:
         admin: Rendszergazda  #g
@@ -97,3 +102,10 @@ hu:
         reset_password_sent_at: A (z) címre küldött jelszó visszaállítása  #g
         reset_password_token: Jelszó token visszaállítása  #g
         uid: Uid  #g
+
+  pending: Felvéve
+  accepted: Elfogadva
+  rented: Kiadva
+  closed: Lezárva
+
+

@@ -1,10 +1,16 @@
 class RentsController < ApplicationController
   before_action :set_rent, only: %i[show edit update destroy]
-  before_action :check_admin, except: %i[show index]
+  before_action :login_required
+  before_action :check_admin, except: %i[show new create]
 
   # GET /rents
   def index
-    @rents = Rent.all
+    @rents = Rent.not_closed
+  end
+
+  # Get /rents/closed
+  def closed
+    @rents = Rent.closed
   end
 
   # GET /rents/1
@@ -20,7 +26,9 @@ class RentsController < ApplicationController
 
   # POST /rents
   def create
-    @rent = Rent.new(rent_params)
+    @rent        = Rent.new(rent_params)
+    @rent.user   = current_user
+    @rent.status = :pending unless current_user.admin?
 
     if @rent.save
       redirect_to @rent, notice: 'Rent was successfully created.'
@@ -53,6 +61,6 @@ class RentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def rent_params
-    params.require(:rent).permit(:end_date, :item_id, :user_id)
+    params.require(:rent).permit(:start_date, :end_date, :order, :comment, :status)
   end
 end

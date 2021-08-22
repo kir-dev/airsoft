@@ -1,32 +1,41 @@
 <%= form_with(model: rent, local: true) do |form| %>
-  <% if rent.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(rent.errors.count, "error") %> prohibited this rent from being saved:</h2>
+  <%= render 'layouts/errors', errors: rent.errors %>
 
-      <ul>
-        <% rent.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <div class="mb-2 align-items-center">
+    <%= form.label :start_date, class: "form-label" %>
+    <div class="form-control">
+      <%= form.datetime_select :start_date, {}, class: "" %>
+    </div>
+  </div>
+
+  <div class="mb-2 align-items-center">
+    <%= form.label :end_date, class: "form-label" %>
+    <div class="form-control">
+      <%= form.datetime_select :end_date, {}, class: "" %>
+    </div>
+  </div>
+
+  <div class="mb-2">
+    <%= form.label :order, class: "form-label" %>
+    <%= form.text_area :order, class: "form-control" %>
+  </div>
+
+  <div class="mb-2">
+    <%= form.label :comment, class: "form-label" %>
+    <%= form.text_area :comment, class: "form-control" %>
+  </div>
+
+  <% if admin_signed_in?%>
+    <div class="mb-5">
+      <%= form.label :status, class: "form-label" %>
+      <%= form.select :status, Rent.statuses.map {|k,v| [t(k), k]}, class: "form-select"
+      %>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :end_date %>
-    <%= form.datetime_select :end_date %>
+  <div class="my-3 d-flex justify-content-between">
+    <%= link_to "Vissza", back_path, class: "btn btn-outline-primary" %>
+    <%= form.submit  class: "btn btn-primary" %>
   </div>
 
-  <div class="field">
-    <%= form.label :item_id %>
-    <%= form.text_field :item_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

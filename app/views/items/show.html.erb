@@ -1,3 +1,5 @@
+<h1>Felszerelés</h1>
+
 <p>
   <strong>Name:</strong>
   <%= @item.name %>
@@ -10,5 +12,7 @@
 
 <div class="my-4 d-flex justify-content-between">
   <%= link_to 'Vissza', items_path, class: "btn btn-outline-primary" %>
-  <%= link_to 'Módosítás', edit_item_path(@item), class: "btn btn-primary" %>
+  <% if admin_signed_in? %>
+    <%= link_to 'Módosítás', edit_item_path(@item), class: "btn btn-primary" %>
+  <% end %>
 </div>
