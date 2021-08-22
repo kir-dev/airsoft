@@ -7,7 +7,7 @@
 #  end_date   :datetime
 #  order      :string
 #  start_date :datetime
-#  status     :integer          default(0)
+#  status     :integer          default("pending")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint           not null
