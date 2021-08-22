@@ -1,0 +1,32 @@
+<h1 class="text-center my-4">Felhasználói adatok módosítása</h1>
+
+<%= form_with(model: @user, local: true, url: force_update_user_path) do |form| %>
+  <%= render 'layouts/errors', errors: @user.errors %>
+
+  <div class="mb-2">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="mb-2">
+    <%= form.label :email, class: "form-label" %>
+    <%= form.text_field :email, class: "form-control" %>
+  </div>
+
+  <div class="mb-2">
+    <%= form.label :admin, class: "form-check-label" do %>
+      <%= form.check_box :admin %>
+      Admin jog
+    <% end %>
+  </div>
+
+  <div class="alert alert-warning" role="alert">
+    Jelenleg Admin jogosultsággal szerkeszted a felhasználót, kérlek légy óvatos mit állítasz át!
+  </div>
+
+  <div class="my-3 d-flex justify-content-between">
+    <%= link_to "Vissza", users_path, class: "btn btn-outline-primary" %>
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+
+<% end %>
