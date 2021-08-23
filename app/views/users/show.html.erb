@@ -12,17 +12,17 @@
       <div class="card-body text-center row justify-content-lg-center justify-content-start">
         <div class="col-auto text-start">
           <p>
-            <strong>Név: </strong><%= @user.name %>
+            <strong>Név:&nbsp;</strong><%= @user.name %>
           </p>
           <p>
-            <strong>Email: </strong><%= @user.email %>
+            <strong>Email:&nbsp;</strong><%= @user.email %>
           </p>
           <% if admin_signed_in? %>
             <p>
-              <strong>Provider: </strong><%= @user.provider %>
+              <strong>Provider:&nbsp;</strong><%= @user.provider %>
             </p>
             <p>
-              <strong>Admin: </strong><%= @user.admin %>
+              <strong>Admin:&nbsp;</strong><%= @user.admin %>
             </p>
           <% end %>
           <% if admin_signed_in? %>
@@ -41,13 +41,13 @@
       <div class="card-header text-center">
         <h5>Regisztrált események</h5>
       </div>
-      <div class="card-body">
+      <div class="card-body  table-responsive">
         <table class="table">
           <thead>
           <tr>
             <th>Esemény</th>
             <th>Időpont</th>
-            <th>Regsiztráció</th>
+            <th>Regisztráció</th>
           </tr>
           </thead>
           <tbody>
@@ -94,7 +94,7 @@
       <div class="card-header text-center">
         <h5>Eszközbérlések</h5>
       </div>
-      <div class="card-body">
+      <div class="card-body table-responsive">
         <table class="table">
           <thead>
           <tr>
