@@ -21,5 +21,5 @@
 
 <div class="d-flex justify-content-between my-3">
   <%= link_to 'Vissza', event_path(@participation.event), class: "btn btn-outline-primary" %>
-  <%= link_to 'Módosítás', edit_participation_path(@participation), class: "btn btn-primary" %>
+  <%= link_to 'Módosítás', edit_participation_path(@participation), class: "btn btn-primary" if @participation.can_edit?(current_user) %>
 </div>

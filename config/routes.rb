@@ -33,6 +33,9 @@ Rails.application.routes.draw do
     member do
       post :demote
       post :promote
+      get :force_edit
+      put :force_update
+      patch :force_update
     end
   end
 
