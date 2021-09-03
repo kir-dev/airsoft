@@ -18,9 +18,9 @@
     <% @events.each do |event| %>
       <tr>
         <td><%= link_to event.name, event %></td>
-        <td><%= event.start %></td>
-        <td><%= event.end %>
-        <td><%= event.event_type ? event.deadline : "-" %></td>
+        <td><%= l event.start %></td>
+        <td><%= l event.end %>
+        <td><%= event.event_type ? l(event.deadline) : "-" %></td>
         <td>
           <% if event.event_type %>
             <%= link_to event.event_type.name, event.event_type %>

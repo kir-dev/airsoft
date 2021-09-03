@@ -24,7 +24,7 @@
     <% @rents.each do |rent| %>
       <tr>
         <td><%= rent.user.name %></td>
-        <td><%= rent.created_at %></td>
+        <td><%= l rent.created_at %></td>
         <td><%= l rent.start_date %> - <%= l rent.end_date %></td>
         <td><%= rent.compact_order %></td>
         <td>
