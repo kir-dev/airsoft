@@ -271,7 +271,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :authsch, ENV['AUTHSCH_APP_ID'], ENV['AUTHSCH_SECRET'], scope: "basic mail displayName"
+  config.omniauth :authsch, Rails.application.credentials[:authsch][:api_key], Rails.application.credentials[:authsch][:secret], scope: "basic mail displayName"
 
 
   # ==> Warden configuration
