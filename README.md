@@ -65,17 +65,29 @@ The database is accessible on port `5433`, so you must update the port in `confi
 After creating the database container you have to set up the database from the console.
 
 ### AuthSCH setup
-Copy .env.example to .env:
-
-```bash
-mv .env.example .env
-```
-
 Create an Outh Client at https://auth.sch.bme.hu with the follwing callback url:
 ```bash
 http://localhost:3000/users/auth/authsch/callback
 ```
-Complete '.env' with the `client id` and `client secret`, and restart the server.
+Run rails credentials editor 
+
+```bash
+rails credentials:edit --environment development
+```
+
+or if it complains about default editor not being set
+
+```bash
+EDITOR=nano rails credentials:edit --environment development
+```
+copy the following yaml, and replace with OAuth credentials
+```yaml
+authsch:
+  api_key: <authsch client id>
+  secret: <authsch secret>
+```
+and then save the file. It will generate a key and encrypted crededentials file. These should be ommited from git commits.
+
 
 ## Linting
 The project uses rubocop to enforce good quality code. On the local machine you can run rubocop to detect mistakes with
