@@ -48,11 +48,11 @@ hu:
       failure: 'Nem sikerült azonosítani %{kind} fiókkal, az ok: "%{reason}".'
     mailer:
       confirmation_instructions:
-        subject: 'Email cím megerősítés'
+        subject: '[AirsoftSCH] Email cím megerősítés'
       reset_password_instructions:
-        subject: 'Jelszó megváltoztatása'
+        subject: '[AirsoftSCH] Jelszó megváltoztatása'
       unlock_instructions:
-        subject: 'Fiók zárolásának megszüntetése'
+        subject: '[AirsoftSCH] Fiók zárolásának megszüntetése'
   errors:
     messages:
       expired: "lejárt, igényelj egy újat"
