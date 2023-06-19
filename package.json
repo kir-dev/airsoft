@@ -9,7 +9,7 @@
     "@rails/actiontext": "6.1.4",
     "@rails/activestorage": "6.1.4",
     "@rails/ujs": "6.1.4",
-    "@fontsource/poppins": "4.5.0",
+    "@fontsource/poppins": "4.5.10",
     "@rails/webpacker": "5.4.0",
     "@rjsf/bootstrap-4": "3.0.0",
     "@rjsf/core": "2.5.1",
