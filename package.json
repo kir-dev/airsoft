@@ -6,7 +6,7 @@
     "@ginkgo-bioworks/react-json-schema-form-builder": "2.6.0",
     "@popperjs/core": "2.9.3",
     "@rails/actioncable": "6.1.4",
-    "@rails/actiontext": "6.1.4",
+    "@rails/actiontext": "6.1.7",
     "@rails/activestorage": "6.1.4",
     "@rails/ujs": "6.1.4",
     "@fontsource/poppins": "4.5.0",
